@@ -1,6 +1,6 @@
 const Companias = require('../models');
 
-exports.getAllCompanies = async function (req, res, next) {
+async function buscarCompanias(req, res, next) {
     await Companias.findAll({
         include: {
             all: true,
@@ -18,7 +18,7 @@ exports.getAllCompanies = async function (req, res, next) {
         });
 }
 
-exports.getAllCompaniesJson = async function (req, res, next) {
+async function buscarCompaniasJson(req, res, next) {
     await Companias.findAll({
         include: {
             all: true,
@@ -37,7 +37,7 @@ exports.getAllCompaniesJson = async function (req, res, next) {
         });
 }
 
-exports.postNewCompany = (req, res, next) => {
+async function nuevaCompania(req, res, next){
     const name = req.body.name;
     const adress = req.body.adress;
     const phone = req.body.phone;
@@ -67,7 +67,8 @@ exports.postNewCompany = (req, res, next) => {
         })
 }
 
-exports.deleteCompany = (req, res, next) => {
+async function borrarCompania(req, res, next)
+{
     const id = req.body.id;
     Companias.findByPk(id)
         .then(data => {
@@ -87,7 +88,7 @@ exports.deleteCompany = (req, res, next) => {
         })
 }
 
-exports.editCompany = (req, body, next) => {
+async function editarCompania(req, body, next){
     const id = req.body.id;
     const name = req.body.name;
     const adress = req.body.adress;
@@ -115,4 +116,13 @@ exports.editCompany = (req, body, next) => {
                 status: 400
             })
         })
+}
+
+module.exports = {
+    buscarCompanias,
+    buscarCompaniasJson,
+    nuevaCompania,
+    borrarCompania,
+    editarCompania
+
 }
