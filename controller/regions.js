@@ -1,8 +1,4 @@
-const Region = require('../models');
-
-const Country = require('../models');
-
-const City = require('../models');
+const {Region, Country, City} = require('../models');
 
 exports.postNewRegion = (req, res, next) => {
     const regionName = req.body.regionName;
