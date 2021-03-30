@@ -1,18 +1,18 @@
 # Proyecto Data Warehouse
 
-_Es una herramienta que permite a una compañia de Marketing administrar todos los contactos de sus clientes para sus campañas._
+Herramienta de Administracion de base de datos de una compañia de Marketing
 
-## Comenzando 🚀
+# Paso a Paso
+# Clonamos
 
-_Clonar proyecto desde consola o descargar desde el repositorio:_
+Clonar proyecto desde consola o descargar desde el repositorio:_
 
-⌨️  git clone https://github.com/gastond23/data_warehouse.git
+git clone https://github.com/NGGuelfo/Data-Warehouse
 
-### Dependencias 📋
+## Instalación 🔧
 
-_En este proyecto se utilizaron las siguientes dependencias:_
+Una vez descargado el repositorio, instalamos las dependencias:
 
-```
 "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -30,76 +30,44 @@ _En este proyecto se utilizaron las siguientes dependencias:_
   "devDependencies": {
     "nodemon": "^2.0.6"
   }
-```
+## EJEMPLO
 
-### Instalación 🔧
+npm install
 
-_Una vez descargado el repositorio procedemos a instalar las dependencias mencionadas:_
+npm install nodemon --save-dev nodemon
 
-```
-⌨️ npm install
+# Base de Datos
 
-⌨️ npm install nodemon --save-dev nodemon
-```
+En el archivo .env se encuentran los datos de configuración de la base de datos. En caso de necesitar, se pueden modificar desde alli.
 
-## Iniciando DB inicial ⚙️
+Puerto = 3000
 
-_Configuración previa:_
+Puerto de la base de datos = 3306
 
-En el archivo **.env_** se encuentran los datos de configuración e inicialies de la base de datos, en caso de ser necesario una personalización modificar los parametros del archivo:
+Host = '127.0.0.1'
 
-```
-APP_PORT=3000
+Usuario = 'root'
 
-DB_PORT=3306
+nombre base de datos = 'data_warehouse'
 
-DB_HOST='localhost'
+Lenguaje = 'mysql'
 
-DB_USER='root'
+## POST Base de Datos Creada
 
-DB_PASS='betsabeXl23'
+Para poder incializar la pagina correctamente y que see conecte con la base, debemos utilizar los siguientes comandos:
 
-DB_NAME='data_warehouse'
+npm restart
 
-DB_DIALECT='mysql'
+npm start
 
-JWT_KEY='secreto_SECRETO'
-```
+## Usuarios
 
-Una vez establecidas las configuraciones para la conexión de la DB crear una DB con phpMyAdmin o MySQLWorkbench con el nombre indicacod en la configuración **data_warehouse**, una vez creada la DB ejecutar el siguiente comando:
+# ADMIN
 
-```
-⌨️ npm restart
-```
-
-Este comando creará la conexión con la DB y añadirá los datos previos para poder trabajar en la aplicación.
-
-## Iniciando Servidor ⚙️
-
-_Ejecutar desde la terminal en la ubicacion de los archivos descargados:_
-
-```
-⌨️ npm start
-```
-
-### Ingreso al sitio 🔩
-
-_La dirección del sitio_ http://localhost:3000
-
-_Nos encontramos una login page_
-
-Usuario con permiso Administrador:
-
-```
 Usuario: admin@mail.com
-
 Contraseña: admin1234
-```
 
-Usuario con permisos básicos:
+# USER COMUN
 
-```
 Usuario: user@mail.com
-
 Contraseña: admin1234
-```
