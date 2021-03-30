@@ -11,7 +11,7 @@ const ejsLint = require('ejs-lint');
 const cookieParser = require('cookie-parser');
 const { config } = require('./config/config');
 const router = express.Router();
-const { authController, upload, searcher } = require('../middlewares');
+const middlewares = require('../middlewares');
 const endpointsUsuario = require('../endpoints/users');
 const endpointsContacto = require('../endpoints/contacts');
 const endpointsRegion = require('../endpoints/regions');
@@ -56,61 +56,61 @@ router.get('/', (req, res) => {
 
 //Usuario
 router.post('/login', endpointsUsuario.loginUsuario);
-router.post('/usuario', authController.validaUsuario, authController.validaAdmin, endpointsUsuario.crearUsuario);
-router.get('/usuarios', authController.validaUsuario, authController.validaAdmin, endpointsUsuario.verUsers);
-router.put('/usuario', authController.validaUsuario, authController.validaAdmin, endpointsUsuario.editUser);
-router.delete('/usuario', authController.validaUsuario, authController.validaAdmin, endpointsUsuario.deleteUser);
+router.post('/usuario', middlewares.validaUsuario, middlewares.validaAdmin, endpointsUsuario.crearUsuario);
+router.get('/usuarios', middlewares.validaUsuario, middlewares.validaAdmin, endpointsUsuario.verUsers);
+router.put('/usuario', middlewares.validaUsuario, middlewares.validaAdmin, endpointsUsuario.editUser);
+router.delete('/usuario', middlewares.validaUsuario, middlewares.validaAdmin, endpointsUsuario.deleteUser);
 
 //Contactos
-router.get('/contactos', authController.validaUsuario, endpointsContacto.getAllContacts);
-router.post('/contactos', authController.validaUsuario, endpointsContacto.postNewContact);
-router.get('/contactos', authController.validaUsuario, endpointsContacto.getContact);
-router.post('/contactos', authController.validaUsuario, endpointsContacto.updateContact);
-router.delete('/contactos', authController.validaUsuario, endpointsContacto.deleteContact);
-router.get('/contactos', authController.validaUsuario, endpointsContacto.getContactsByRegion);
-router.post('/editar-contacto', authController.validaUsuario, upload.single('img'), endpointsContacto.updateContact);
-router.post('/uploads', authController.validaUsuario, upload.single('img'), endpointsContacto.postNewContact);
-router.get('/form-contact', authController.validaUsuario, endpointsContacto.contactCreateForm);
-router.delete('/delete-contactos', authController.validaUsuario, endpointsContacto.deleteAllContacts);
-router.post('/orden-contact', authController.validaUsuario, endpointsContacto.orderAscendente);
-router.post('/search-contacto', authController.validaUsuario,
-    searcher.buscarNombre,
-    searcher.busquedaApellido,
-    searcher.busquedaMail,
-    searcher.busquedaPuesto,
-    searcher.busquedaInteres,
-    searcher.busquedaTelefono,
-    searcher.busquedaCompania,
-    searcher.busquedaRegión,
-    searcher.busquedaCountry,
-    searcher.busquedaCiudad
+router.get('/contactos', middlewares.validaUsuario, endpointsContacto.getAllContacts);
+router.post('/contactos', middlewares.validaUsuario, endpointsContacto.postNewContact);
+router.get('/contactos', middlewares.validaUsuario, endpointsContacto.getContact);
+router.post('/contactos', middlewares.validaUsuario, endpointsContacto.updateContact);
+router.delete('/contactos', middlewares.validaUsuario, endpointsContacto.deleteContact);
+router.get('/contactos', middlewares.validaUsuario, endpointsContacto.getContactsByRegion);
+router.post('/editar-contacto', middlewares.validaUsuario, middlewares.single('img'), endpointsContacto.updateContact);
+router.post('/uploads', middlewares.validaUsuario, middlewares.single('img'), endpointsContacto.postNewContact);
+router.get('/form-contact', middlewares.validaUsuario, endpointsContacto.contactCreateForm);
+router.delete('/delete-contactos', middlewares.validaUsuario, endpointsContacto.deleteAllContacts);
+router.post('/orden-contact', middlewares.validaUsuario, endpointsContacto.orderAscendente);
+router.post('/search-contacto', middlewares.validaUsuario,
+    middlewares.buscarNombre,
+    middlewares.busquedaApellido,
+    middlewares.busquedaMail,
+    middlewares.busquedaPuesto,
+    middlewares.busquedaInteres,
+    middlewares.busquedaTelefono,
+    middlewares.busquedaCompania,
+    middlewares.busquedaRegión,
+    middlewares.busquedaCountry,
+    middlewares.busquedaCiudad
 );
 
 //Region
-router.post('/region', authController.validaUsuario, authController.validaAdmin, endpointsRegion.postNewRegion);
-router.get('/region_city', authController.validaUsuario, endpointsRegion.allRegions);
-router.delete('/region', authController.validaUsuario, endpointsRegion.deleteRegion);
-router.put('/region', authController.validaUsuario, endpointsRegion.updateRegion);
-router.get('/region', authController.validaUsuario, endpointsRegion.allRegionsJSON);
+router.post('/region', middlewares.validaUsuario, middlewares.validaAdmin, endpointsRegion.postNewRegion);
+router.get('/region_city', middlewares.validaUsuario, endpointsRegion.allRegions);
+router.delete('/region', middlewares.validaUsuario, endpointsRegion.deleteRegion);
+router.put('/region', middlewares.validaUsuario, endpointsRegion.updateRegion);
+router.get('/region', middlewares.validaUsuario, endpointsRegion.allRegionsJSON);
 
 //Paises
-router.post('/country', authController.validaUsuario, authController.validaAdmin, endpointsRegion.postNewCountry);
-router.delete('/country', authController.validaUsuario, endpointsRegion.deleteCountry);
-router.put('/country', authController.validaUsuario, endpointsRegion.updateCountry);
-router.post('/countries', authController.validaUsuario, endpointsRegion.getCountries);
+router.post('/country', middlewares.validaUsuario, middlewares.validaAdmin, endpointsRegion.postNewCountry);
+router.delete('/country', middlewares.validaUsuario, endpointsRegion.deleteCountry);
+router.put('/country', middlewares.validaUsuario, endpointsRegion.updateCountry);
+router.post('/countries', middlewares.validaUsuario, endpointsRegion.getCountries);
 
 //Ciudades
-router.post('/city', authController.validaUsuario, authController.validaAdmin, endpointsRegion.postNewCity);
-router.delete('/city', authController.validaUsuario, endpointsRegion.deleteCity);
-router.put('/city', authController.validaUsuario, endpointsRegion.updateCity);
-router.post('/cities', authController.validaUsuario, endpointsRegion.getCities);
+router.post('/city', middlewares.validaUsuario, middlewares.validaAdmin, endpointsRegion.postNewCity);
+router.delete('/city', middlewares.validaUsuario, endpointsRegion.deleteCity);
+router.put('/city', middlewares.validaUsuario, endpointsRegion.updateCity);
+router.post('/cities', middlewares.validaUsuario, endpointsRegion.getCities);
 
 //Compañias
-router.get('/companies', authController.validaUsuario, endpointsCompanias.getAllCompanies);
-router.get('/companies-json', authController.validaUsuario, endpointsCompanias.getAllCompaniesJson);
-router.post('/companies', authController.validaUsuario, endpointsCompanias.postNewCompany);
-router.put('/companies', authController.validaUsuario, endpointsCompanias.editCompany);
-router.delete('/companies', authController.validaUsuario, endpointsCompanias.deleteCompany);
+router.get('/companies', middlewares.validaUsuario, endpointsCompanias.getAllCompanies);
+router.get('/companies-json', middlewares.validaUsuario, endpointsCompanias.getAllCompaniesJson);
+router.post('/companies', middlewares.validaUsuario, endpointsCompanias.postNewCompany);
+router.put('/companies', middlewares.validaUsuario, endpointsCompanias.editCompany);
+router.delete('/companies', middlewares.validaUsuario, endpointsCompanias.deleteCompany);
 
 sequelize
     .sync()
