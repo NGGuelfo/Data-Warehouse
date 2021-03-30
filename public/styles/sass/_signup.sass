@@ -1,0 +1,37 @@
+.main-signup
+    top: 0
+    display: none
+    position: absolute
+    margin: auto
+    height: 100vh
+    width: 100%
+    z-index: 100
+    background-color: rgba(232, 232, 232, 0.9)
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    font-family: $font-openSans
+    h2
+        position: absolute
+        top: 3.5em
+    .close-btn
+        display: block
+        background: none
+        border-style: none
+        position: absolute
+        top: 5em
+        right: 10em
+        text-decoration: none
+        .fa-times
+            display: block
+            color: #007bff
+            font-size: 25px
+            transition: all 0.2s ease-in
+    .close-btn:hover
+        .fa-times
+            color: #dc3545
+    .form-title
+        position: relative
+        margin: auto
+.active
+    display: flex

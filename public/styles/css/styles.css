@@ -1,0 +1,681 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+.navbar-nav .nav-item .nav-link {
+  display: block;
+  height: 118%;
+}
+
+.navbar-nav .nav-item .nav-link.active {
+  border-bottom: 4px solid #ffffff;
+}
+
+.contacts-title {
+  display: block;
+  margin: auto;
+  font-family: "Open Sans", "sans-serif";
+  text-align: center;
+}
+
+.contact-search-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 1em;
+}
+
+.contact-search-container .input-cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  width: 50%;
+  margin-left: 0;
+  margin-bottom: 2em;
+}
+
+.contact-search-container .btn {
+  height: 38px;
+  margin-right: 1em;
+}
+
+.form-container {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(232, 232, 232, 0.9);
+}
+
+.form-container .close-btn {
+  display: block;
+  background: none;
+  border-style: none;
+  position: absolute;
+  top: 5em;
+  right: 10em;
+  text-decoration: none;
+}
+
+.form-container .close-btn .fa-times {
+  display: block;
+  color: #007bff;
+  font-size: 25px;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.form-container .close-btn:hover .fa-times {
+  color: #dc3545;
+}
+
+.form-container .contact-form {
+  font-family: "Open Sans", "sans-serif";
+  width: 100%;
+  height: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.form-container .contact-form .grupo-inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.form-container .contact-form .region-select-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.form-container .contact-form .region-select-container .input-group {
+  margin: 1em;
+}
+
+.form-contenedor {
+  position: absolute;
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(232, 232, 232, 0.9);
+}
+
+.form-contenedor .close-btn {
+  display: block;
+  background: none;
+  border-style: none;
+  position: absolute;
+  top: 5em;
+  right: 10em;
+  text-decoration: none;
+}
+
+.form-contenedor .close-btn .fa-times {
+  display: block;
+  color: #007bff;
+  font-size: 25px;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.form-contenedor .close-btn:hover .fa-times {
+  color: #dc3545;
+}
+
+.form-contenedor .contact-form {
+  font-family: "Open Sans", "sans-serif";
+  width: 100%;
+  height: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.form-contenedor .contact-form .grupo-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.form-contenedor .contact-form .region-select-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.form-contenedor .contact-form .region-select-container .input-group {
+  margin: 1em;
+}
+
+.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.contador {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  font-family: "Open Sans", "sans-serif";
+  color: #007bff;
+  top: 10.2em;
+  left: 1em;
+  border: 1px #007bff solid;
+  height: 32px;
+  width: 80px;
+  border-radius: 5px 5px 0 0;
+  visibility: hidden;
+}
+
+.contador h6 {
+  margin: auto;
+  font-size: 12px;
+}
+
+.btn-cont {
+  position: absolute;
+  top: 8em;
+  right: 15em;
+  visibility: hidden;
+}
+
+.active-count {
+  visibility: visible;
+}
+
+.arrows {
+  width: 35px;
+  cursor: pointer;
+}
+
+.rows-content {
+  cursor: pointer;
+}
+
+.order-btn {
+  border: none;
+  background: none;
+}
+
+#table {
+  width: 100%;
+  font-family: "Open Sans", "sans-serif";
+}
+
+#table tbody .avatar img {
+  height: 80px;
+  width: 80px;
+  border-radius: 40px;
+}
+
+.region-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: auto;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: auto;
+  padding-top: 1em;
+}
+
+.region-container .tree-container {
+  font-family: "Open Sans", "sans-serif";
+  font-size: 20px;
+  width: 100%;
+}
+
+.region-container .tree-container ul li {
+  display: block;
+  width: 100%;
+}
+
+.region-container .tree-container ul li .btn {
+  height: 25px;
+  text-align: center;
+  line-height: 0;
+  margin-left: 2em;
+  font-size: 10px;
+}
+
+.region-container .control-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.region-container .control-container h1 {
+  font-family: "Open Sans", "sans-serif";
+}
+
+.region-container .control-container .input-group {
+  width: 20%;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin: 1em;
+}
+
+.overlay-msg {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  height: 120vh;
+  width: 100%;
+  background-color: rgba(232, 232, 232, 0.9);
+  margin: auto;
+  z-index: 100;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Open Sans", "sans-serif";
+}
+
+.overlay-msg .msg-title {
+  font-size: 30px;
+  color: #0062ff;
+}
+
+.overlay-msg .fas {
+  display: none;
+}
+
+.ok {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ok .fa-check {
+  display: block;
+  font-size: 45px;
+  color: #00ff00;
+}
+
+.error {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.error .fa-times {
+  display: block;
+  font-size: 45px;
+  color: #ff0000;
+}
+
+.overlay-input {
+  position: absolute;
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 120vh;
+  width: 100%;
+  margin: auto;
+  font-family: "Open Sans", "sans-serif";
+  right: 0;
+  left: 0;
+  top: 0;
+  background-color: rgba(232, 232, 232, 0.9);
+}
+
+.overlay-input .input-group {
+  width: 50%;
+}
+
+.edit-active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.agregate-company-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: 20vh;
+  width: 100%;
+  font-family: "Open Sans", "sans-serif";
+}
+
+.agregate-company-container h1 {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.agregate-company-container .btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: auto;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.agregate-company-container .btn-container .btn {
+  margin-right: 1em;
+}
+
+.overlay-form {
+  font-family: "Open Sans", "sans-serif";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 120vh;
+  width: 100%;
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(232, 232, 232, 0.9);
+}
+
+.overlay-form h2 {
+  margin-top: -5em;
+  margin-bottom: 2em;
+}
+
+.overlay-form .close-btn {
+  display: block;
+  background: none;
+  border-style: none;
+  position: absolute;
+  top: 5em;
+  right: 10em;
+  text-decoration: none;
+}
+
+.overlay-form .close-btn .fa-times {
+  display: block;
+  color: #007bff;
+  font-size: 25px;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.overlay-form .close-btn:hover .fa-times {
+  color: #dc3545;
+}
+
+.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.users-table {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.users-table .users-title {
+  font-family: "Open Sans", "sans-serif";
+  text-align: center;
+  margin: 0.5em;
+}
+
+.users-table .agregate_user_container {
+  height: 5vh;
+  display: block;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin: 0.5em;
+}
+
+.main-signup {
+  top: 0;
+  display: none;
+  position: absolute;
+  margin: auto;
+  height: 100vh;
+  width: 100%;
+  z-index: 100;
+  background-color: rgba(232, 232, 232, 0.9);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Open Sans", "sans-serif";
+}
+
+.main-signup h2 {
+  position: absolute;
+  top: 3.5em;
+}
+
+.main-signup .close-btn {
+  display: block;
+  background: none;
+  border-style: none;
+  position: absolute;
+  top: 5em;
+  right: 10em;
+  text-decoration: none;
+}
+
+.main-signup .close-btn .fa-times {
+  display: block;
+  color: #007bff;
+  font-size: 25px;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.main-signup .close-btn:hover .fa-times {
+  color: #dc3545;
+}
+
+.main-signup .form-title {
+  position: relative;
+  margin: auto;
+}
+
+.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.overlay-signup {
+  display: none;
+  position: absolute;
+  margin: auto;
+  height: 120vh;
+  width: 100%;
+  z-index: 120;
+  background-color: rgba(232, 232, 232, 0.9);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.overlay-signup #msg-title {
+  font-size: 64px;
+  font-family: 'Open sans', sans-serif;
+}
+
+.overlay-signup .fas {
+  font-size: 64px;
+}
+
+.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/*# sourceMappingURL=styles.css.map */

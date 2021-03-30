@@ -1,0 +1,43 @@
+<h1 class="users-title">Usuarios</h1>
+<% if(data.length <= 0) { %>
+<div class="no-data-container">
+    <h3>No existen usuarios</h3>
+    <a class="btn btn-outline-secondary" href="#" role="button">Agregar Usuario</a>
+</div>
+<% } else if (data.length > 0) { %>
+<div class="agregate_user_container">
+    <a class="btn btn-outline-secondary" href="#" role="button">Agregar Usuario</a>
+</div>
+
+<table id="table" class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre y Apellido</th>
+            <th scope="col">Email</th>
+            <th scope="col">Permisos</th>
+            <th scope="col">Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (let users of data) { %>
+        <tr>
+            <th scope="row" class="align-middle"><%= users.id %> </th>
+            <td class="align-middle"><%= users.name %> <%= users.lastname %></td>
+            <td class="align-middle"><%= users.email %></td>
+            <% if(users.admin == 1) { %>
+            <td class="align-middle">Administrador</td>
+            <% } else if (users.admin == 0) { %>
+            <td class="align-middle">Usuario</td>
+            <% } %>
+            <td class="align-middle">
+                <button type="button" value="<%= users.id %>" class="btn btn-primary"
+                    onclick="editUser(value)">Editar</button>
+                <button type="button" value="<%= users.id %>" class="btn btn-danger"
+                    onclick="deleteUser(value)">Borrar</button>
+            </td>
+        </tr>
+        <% }; %>
+    </tbody>
+</table>
+<% } %>

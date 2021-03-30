@@ -1,0 +1,51 @@
+<%- include('includes/head') %>
+<link rel="stylesheet" href="/styles/css/styles.css">
+<% if (title == 'Region/Ciudad') { %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css">
+<% } %>
+<title><%= title %></title>
+</head>
+
+<body>
+    <%- include('includes/header') %>
+    <main>
+        <% if (title == 'Contactos') { %>
+        <section class="contact-table">
+            <%- include('includes/contacts-view') %>
+        </section>
+        <% } else if (title == 'Region/Ciudad') { %>
+        <section class="region-tree">
+            <%- include('includes/region-tree') %>
+        </section>
+        <% } else if (title == 'Companías') {  %>
+        <section class="companies-table">
+            <%- include('includes/companies-view') %>
+        </section>
+        <% } else if (title == 'Usuarios') { %>
+        <section class="users-table">
+            <%- include('includes/users-view') %>
+            <%- include('includes/signup_form')%>
+            <%- include('includes/overlay-signup')%>
+        </section>
+        <% } %>
+    </main>
+    <script src="/js/act.js"></script>
+    <script src="/js/navbar.js"></script>
+    <% if (title == 'Region/Ciudad') { %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <script src="/js/jstree.js"></script>
+    <script src="/js/regions.js"></script>
+    <% } %>
+    <% if (title == 'Companías') { %>
+    <script src="/js/companies.js"></script>
+    <% } %>
+    <% if (title == 'Contactos') { %>
+    <script src="/js/contacts.js"></script>
+    <script src="/js/form-contact.js"></script>
+    <% } %>
+    <% if (title == 'Usuarios') { %>
+    <script src="/js/signup.js"></script>
+    
+    <% } %>
+    <%- include('includes/footer') %>

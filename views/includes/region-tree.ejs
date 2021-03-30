@@ -1,0 +1,89 @@
+<div class="region-container">
+    <div class="control-container">
+        <h1>Regiónes / Países / Ciudades</h1>
+        <div class="input-group mb-3">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon1" onclick="createRegion()">Agregar
+                Región</button>
+            <input id="region-name" type="text" class="form-control" placeholder=""
+                aria-label="Example text with button addon" aria-describedby="button-addon1">
+        </div>
+    </div>
+    
+    <div id="jstree" class="tree-container">
+        <% data.sort(function (a, b) {
+            let textA = a.name;
+            let textB = b.name;
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        }); %>
+        <ul> <% for (let region of data) { %>
+            <li id="regionId <%= region.id %>" data-jstree='{"icon":"https://icons.getbootstrap.com/icons/globe.svg"}'>
+                <%= region.name %>
+                <button type="button" class="btn btn-primary btn-sm" onclick="createCountry()"
+                    value="<%= region.id %> ">Agregar País</button>
+                <ul>
+                    <% for (let country of region.countries) { %>
+                    <li id="countryId <%= country.id %>"
+                        data-jstree='{"icon":"https://icons.getbootstrap.com/icons/flag-fill.svg"}'><%= country.name %>
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="editCountry()"
+                            value="<%= country.id %>">Editar</button>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteCountry()"
+                            value="<%= country.id %>">Borrar</button>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="createCity()"
+                            value="<%= country.id %>">Agregar Ciudad</button>
+                        <ul>
+                            <% for (let city of country.cities) {%>
+                            <li id="cityId <%= city.id %>"
+                                data-jstree='{"icon":"https://icons.getbootstrap.com/icons/geo-alt.svg"}'>
+                                <%= city.name %>
+                                <button type="button" class="btn btn-secondary btn-sm" onclick="editCity()"
+                                    value="<%= city.id %>">Editar</button>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="deleteCity()"
+                                    value="<%= city.id %>">Borrar</button></li>
+                            <% }; %>
+                        </ul>
+                    </li>
+                    <% }; %>
+                </ul>
+            </li>
+            <% }; %>
+        </ul>
+    </div>
+    
+</div>
+<div id="msg-popup" class="overlay-msg">
+    <h2 id="msg-check" class="msg-title"></h2>
+    <i id="check-ok" class="fas fa-check"></i>
+    <i id="check-error" class="fas fa-times"></i>
+</div>
+<div class="overlay-input">
+    <h2 id="form-title">Agregar País</h2>
+    <div class="input-group mb-3">
+        <button class="btn btn-outline-secondary" type="button" id="btn-create-country">Agregar</button>
+        <input id="post-country" type="text" class="form-control" placeholder=""
+            aria-label="Example text with button addon" aria-describedby="button-addon1">
+    </div>
+</div>
+<div class="overlay-input">
+    <h2 id="form-title">Agregar Ciudad</h2>
+    <div class="input-group mb-3">
+        <button class="btn btn-outline-secondary" type="button" id="btn-create-city">Agregar</button>
+        <input id="city-name" type="text" class="form-control" placeholder=""
+            aria-label="Example text with button addon" aria-describedby="button-addon1">
+    </div>
+</div>
+<div class="overlay-input">
+    <h2 id="form-title">Editar País</h2>
+    <div class="input-group mb-3">
+        <button class="btn btn-outline-secondary" type="button" id="btn-edit-country">Editar</button>
+        <input id="put-edit-country" type="text" class="form-control" placeholder=""
+            aria-label="Example text with button addon" aria-describedby="button-addon1">
+    </div>
+</div>
+<div class="overlay-input">
+    <h2 id="form-title">Editar Ciudad</h2>
+    <div class="input-group mb-3">
+        <button class="btn btn-outline-secondary" type="button" id="btn-edit-city">Editar</button>
+        <input id="edit-city-name" type="text" class="form-control" placeholder=""
+            aria-label="Example text with button addon" aria-describedby="button-addon1">
+    </div>
+</div>

@@ -1,0 +1,221 @@
+<h1 class="contacts-title">Contactos</h1>
+<% if(data.length <= 0) { %>
+<div class="no-data-container">
+    <h3>No existen contactos</h3>
+    <a class="btn btn-outline-secondary" href="/form-contact" role="button">Agregar Contacto</a>
+</div>
+<% } else if (data.length > 0) { %>
+<form class="contact-search-container" method="POST" action="/search-contacto"
+    enctype="application/x-www-form-urlencoded">
+    <label for="exampleDataList" class="form-label"></label>
+    <div class="input-cont">
+        <input class="form-control" list="datalistOptions" id="exampleDataList" type="text"
+            placeholder="Type to search..." name="search">
+        <datalist id="datalistOptions">
+        </datalist>
+        <button id="search_btn" type="submit" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                <path fill-rule="evenodd"
+                    d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+            </svg></button>
+    </div>
+    <a class="btn btn-outline-secondary" href="/form-contact" role="button">Agregar Contacto</a>
+</form>
+
+<div class="btn-cont">
+    <button id="delete-btn-group" type="button" class="btn btn-danger btn-sm">Eliminar Contactos</button>
+</div>
+<div class="contador">
+    <h6 id="contact-count"></h6>
+</div>
+<table id="table" class="table table-bordered table-hover">
+    <thead>
+        <tr class="rows">
+            <th scope="col">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="allCheck">
+                    <label class="form-check-label" for="allCheck">
+                        ID
+                    </label>
+                </div>
+            </th>
+            <th scope="col">Avatar</th>
+            <th scope="col">
+                <form action="/orden-contact" method="post">Nombre y Apellido<input type="hidden" name="title"
+                        value="name" hidden>
+                    <input id="name-direction" type="hidden" name="direction" value="" hidden><button class="order-btn"
+                        id="order-name" type="submit"><svg class="arrows" xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
+                        </svg></button></form>
+            </th>
+            <th scope="col">
+                <form action="/orden-contact" method="post">Email<input type="hidden" name="title" value="email" hidden>
+                    <input id="email-direction" type="hidden" name="direction" value="" hidden><button class="order-btn"
+                        id="order-email" type="submit"><svg class="arrows" xmlns="http://www.w3.org/2000/svg" width="16"
+                            height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
+                        </svg></button></form>
+            </th>
+            <th scope="col">
+                <form action="/orden-contact" method="post">Puesto<input type="hidden" name="title" value="position"
+                        hidden>
+                    <input id="position-direction" type="hidden" name="direction" value="" hidden><button
+                        class="order-btn" id="order-position" type="submit"><svg class="arrows"
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
+                        </svg></button></form>
+            </th>
+            <th scope="col">
+                <form action="/orden-contact" method="post">Compania<input type="hidden" name="title" value="companyId"
+                        hidden>
+                    <input id="company-direction" type="hidden" name="direction" value="" hidden><button
+                        class="order-btn" id="order-company" type="submit"><svg class="arrows"
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
+                        </svg></button></form>
+            </th>
+            <th scope="col">
+                <form action="/orden-contact" method="post">Interés<input type="hidden" name="title" value="interest"
+                        hidden>
+                    <input id="interest-direction" type="hidden" name="direction" value="" hidden><button
+                        class="order-btn" id="order-interest" type="submit"><svg class="arrows"
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
+                        </svg></button></form>
+            </th>
+            <th scope="col">
+                <form action="/orden-contact" method="post">País / Región<input type="hidden" name="title"
+                        value="countryId" hidden>
+                    <input id="country-direction" type="hidden" name="direction" value="" hidden><button
+                        class="order-btn" id="order-country" type="submit"><svg class="arrows"
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
+                        </svg></button></form>
+            </th>
+            <th scope="col">Acción</th>
+        </tr>
+    </thead>
+    <tbody id="table-body">
+        <% for (let contacts of data) { %>
+        <tr class="rows rows-content" title="<%= contacts.id %>">
+            <th scope="row" class="align-middle" title="<%= contacts.id %>">
+                <div class="form-check" title="<%= contacts.id %>">
+                    <input class="form-check-input" type="checkbox" value="<%= contacts.id %>"
+                        id="flexCheckDefault<%= contacts.id %>">
+                    <label class="form-check-label" for="flexCheckDefault<%= contacts.id %>"><%= contacts.id %></label>
+                </div>
+            </th>
+            <td class="avatar align-middle" title="<%= contacts.id %>"><img src="/uploads/<%= contacts.img %>"
+                    alt="Avatar" title="<%= contacts.id %>"></td>
+            <td class="align-middle" title="<%= contacts.id %>"><%= contacts.name %> <%= contacts.lastname %></td>
+            <td class="align-middle" title="<%= contacts.id %>"><%= contacts.email %></td>
+            <td class="align-middle" title="<%= contacts.id %>"><%= contacts.position %></td>
+            <td class="align-middle" title="<%= contacts.id %>"><%= contacts.company.name %></td>
+            <td class="align-middle" title="<%= contacts.id %>">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                        aria-valuenow="<%= contacts.interest %>" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </td>
+            <td class="align-middle" title="<%= contacts.id %>"><%= contacts.city.country.name %> /
+                <%= contacts.city.country.region.name %>
+            </td>
+            <td class="align-middle">
+                <button type="button" class="btn btn-primary" value="<%= contacts.id %>"
+                    onclick="editContact(value)">Editar</button>
+                <button type="button" class="btn btn-danger" value="<%= contacts.id %>"
+                    onclick="deleteContact(value)">Borrar</button>
+            </td>
+        </tr>
+        <% }; %>
+    </tbody>
+</table>
+<% } %>
+
+<div class="form-contenedor">
+    <a href="/contactos" class="close-btn"><i class="fas fa-times"></i></a>
+    <form class="contact-form" method="POST" action="/editar-contacto" enctype="multipart/form-data">
+        <h2 id="form-title">Editar Contacto</h2>
+        <div class="form-group">
+            <input type="text" class="form-control mx-sm-3" id="inputId" name="id" hidden required>
+        </div>
+        <div class="grupo-input">
+            <div class="form-group">
+                <label for="validationServer01">Nombre</label>
+                <input type="text" class="form-control mx-sm-3" id="validationServer01" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="validationServer02">Apellido</label>
+                <input type="text" class="form-control mx-sm-3" id="validationServer02" name="lastname" required>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3">Email</label>
+                <input type="email" class="form-control mx-sm-3" id="inputEmail3" name="email" required>
+            </div>
+        </div>
+        <div class="grupo-input">
+            <div class="form-group">
+                <label for="validationServer01">Teléfono</label>
+                <input type="text" class="form-control mx-sm-3" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="validationServer01">Dirección</label>
+                <input type="text" class="form-control mx-sm-3" id="adress" name="adress" required>
+            </div>
+            <div class="form-group">
+                <label for="validationServer01">Puesto</label>
+                <input type="text" class="form-control mx-sm-3" id="puesto" name="position" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="formFile" class="form-label">Añade una imagen del contacto...</label>
+            <input class="form-control" type="file" id="formFile" name="img">
+        </div>
+        <div class="form-group">
+            <label for="customRange3" class="form-label">Rango de interés</label>
+            <input type="range" class="form-range" min="0" max="100" step="25" id="customRange3" name="interest">
+        </div>
+        <div class="region-select-container">
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Región</label>
+                <select class="form-select" id="select-region">
+                    <option selected>Elige...</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">País</label>
+                <select class="form-select" id="select-country" disabled>
+                    <option selected>Elige...</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Ciudad</label>
+                <select class="form-select" id="select-city" name="cityId" disabled>
+                    <option selected>Elige...</option>
+                </select>
+            </div>
+        </div>
+        <div class="company-select-container">
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Compania</label>
+                <select class="form-select" id="select-company" name="companyId">
+                    <option selected>Elige...</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="edit_btn">Editar Contacto</button>
+    </form>
+</div>

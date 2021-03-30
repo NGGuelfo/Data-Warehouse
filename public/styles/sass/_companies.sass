@@ -1,0 +1,53 @@
+.agregate-company-container
+    display: flex
+    flex-direction: column
+    justify-content: space-evenly
+    height: 20vh
+    width: 100%
+    font-family: $font-openSans
+    h1
+        align-self: center
+    .btn-container
+        display: flex
+        width: 100%
+        height: auto
+        justify-content: flex-end
+        .btn
+            margin-right: 1em
+
+.overlay-form
+    font-family: $font-openSans
+    position: absolute
+    top: 0
+    right: 0
+    left: 0
+    bottom: 0
+    height: 120vh
+    width: 100%
+    display: none
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    background-color: rgba(232, 232, 232, 0.9)
+    h2
+        margin-top: -5em
+        margin-bottom: 2em
+    .close-btn
+        display: block
+        background: none
+        border-style: none
+        position: absolute
+        top: 5em
+        right: 10em
+        text-decoration: none
+        .fa-times
+            display: block
+            color: #007bff
+            font-size: 25px
+            transition: all 0.2s ease-in
+    .close-btn:hover
+        .fa-times
+            color: #dc3545
+
+.active
+    display: flex
