@@ -9,7 +9,7 @@ const {
 } = require('../models');
 
 
-exports.crearUsuario = (req, res, next) => {
+async function crearUsuario(req, res){
     const newName = req.body.name;
     const newLastName = req.body.lastname;
     const newEmail = req.body.email;
@@ -58,7 +58,7 @@ exports.crearUsuario = (req, res, next) => {
         })
 }
 
-exports.loginUsuario = (req, res, next) => {
+async function loginUsuario(req, res){
     const email = req.body.email;
     const password = req.body.password;
     var usuarioLog;
@@ -96,7 +96,7 @@ exports.loginUsuario = (req, res, next) => {
         })
 }
 
-exports.verUsers = (req, res, next) => {
+async function verUsuarios(req, res){
     User.findAll()
         .then(data => {
             console.log(JSON.stringify(data, null, 2));
@@ -111,7 +111,7 @@ exports.verUsers = (req, res, next) => {
         })
 }
 
-exports.editUser = (req, res, next) => {
+async function editarUsuarios(req, res){
     const id = req.body.id;
     const newName = req.body.name;
     const newLastName = req.body.lastname;
@@ -146,7 +146,7 @@ exports.editUser = (req, res, next) => {
         })
 }
 
-exports.deleteUser = (req, res, next) => {
+async function borrarUsuarios(req, res){
     const id = req.body.id;
     User.findByPk(id)
         .then(user => {
@@ -165,4 +165,12 @@ exports.deleteUser = (req, res, next) => {
                 status: 400
             })
         })
+}
+
+module.exports = {
+    crearUsuario,
+    loginUsuario,
+    verUsuarios,
+    editarUsuarios,
+    borrarUsuarios
 }

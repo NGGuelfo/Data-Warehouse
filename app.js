@@ -12,7 +12,7 @@ const cookieParser = require('cookie-parser');
 const { config } = require('./config/config');
 const router = express.Router();
 const { buscarPais, checkCiudad, busquedaRegión, searchCompany, buscarInteres, existePuesto, checkTelefono, validaMail, buscarApellido, buscarNombre, validaAdmin, validaUsuario } = require('./middlewares');
-const endpointsUsuario = require('./endpoints/usuarios');
+const { crearUsuario, loginUsuario, verUsuarios, editarUsuarios, borrarUsuarios } = require('./endpoints/usuarios');
 const { nuevoContacto, buscarContacto, buscarContactos, editarContacto, borrarContacto, borrarContactos, contactoPorRegion, contactoPorPais, contactoPorCiudad, contactoPorCompania, formularioContacto, ordenarContacto } = require('./endpoints/contactos');
 const { nuevaRegion, buscarRegiones, buscarRegionesJSON, borrarRegion, editarRegion, nuevoPais, buscarPaises, editarPais, borrarPais, nuevaCiudad, buscarCiudades, editarCiudad, borrarCiudad } = require('./endpoints/regiones');
 const { buscarCompanias, buscarCompaniasJson, nuevaCompania, borrarCompania, editarCompania } = require('./endpoints/companias');
@@ -55,11 +55,11 @@ router.get('/', (req, res) => {
 //Endpoints
 
 //Usuario
-router.post('/login', endpointsUsuario.loginUsuario);
-router.post('/usuario', validaUsuario, validaAdmin, endpointsUsuario.crearUsuario);
-router.get('/usuarios', validaUsuario, validaAdmin, endpointsUsuario.verUsers);
-router.put('/usuario', validaUsuario, validaAdmin, endpointsUsuario.editUser);
-router.delete('/usuario', validaUsuario, validaAdmin, endpointsUsuario.deleteUser);
+router.post('/login', loginUsuario);
+router.post('/usuario', validaUsuario, validaAdmin, crearUsuario);
+router.get('/usuarios', validaUsuario, validaAdmin, verUsuarios);
+router.put('/usuario', validaUsuario, validaAdmin, editarUsuarios);
+router.delete('/usuario', validaUsuario, validaAdmin, borrarUsuarios);
 
 //Contactos
 router.get('/contactos', validaUsuario, buscarContactos);
@@ -83,16 +83,16 @@ router.put('/region', validaUsuario, editarRegion);
 router.get('/region', validaUsuario, buscarRegionesJSON);
 
 //Paises
-router.post('/country', validaUsuario, validaAdmin, endpointsRegion.postNewCountry);
-router.delete('/country', validaUsuario, endpointsRegion.deleteCountry);
-router.put('/country', validaUsuario, endpointsRegion.updateCountry);
-router.post('/countries', validaUsuario, endpointsRegion.getCountries);
+router.post('/country', validaUsuario, validaAdmin, nuevoPais);
+router.delete('/country', validaUsuario, borrarPais);
+router.put('/country', validaUsuario, editarPais);
+router.post('/countries', validaUsuario, buscarPaises);
 
 //Ciudades
-router.post('/city', validaUsuario, validaAdmin, endpointsRegion.postNewCity);
-router.delete('/city', validaUsuario, endpointsRegion.deleteCity);
-router.put('/city', validaUsuario, endpointsRegion.updateCity);
-router.post('/cities', validaUsuario, endpointsRegion.getCities);
+router.post('/city', validaUsuario, validaAdmin, nuevaCiudad);
+router.delete('/city', validaUsuario, borrarCiudad);
+router.put('/city', validaUsuario, editarCiudad);
+router.post('/cities', validaUsuario, buscarCiudades);
 
 //Compañias
 router.get('/companies', validaUsuario, buscarCompanias);
