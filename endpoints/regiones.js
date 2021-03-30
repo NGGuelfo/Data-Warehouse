@@ -1,6 +1,8 @@
-const { Region, Country, City } = require('../models');
+const { Regiones, Paises, Ciudad } = require('../models');
 
-exports.postNewRegion = (req, res, next) => {
+//REGIONES
+
+async function nuevaRegion(req, res){
     const regionName = req.body.regionName;
     Region.create({
         name: regionName
@@ -21,53 +23,7 @@ exports.postNewRegion = (req, res, next) => {
         })
 }
 
-exports.postNewCountry = (req, res, next) => {
-    const regionId = parseInt(req.body.regionId);
-    const countryName = req.body.countryName;
-    Country.create({
-        name: countryName,
-        regionId: regionId
-    })
-        .then(data => {
-            res.status(200).json({
-                msg: 'Pais creado',
-                data: data,
-                status: 200
-            })
-        })
-        .catch(err => {
-            res.status(400).json({
-                msg: 'Ocurrió un error, intente mas tarde.',
-                error: err,
-                status: 400
-            })
-        })
-}
-
-exports.postNewCity = (req, res, next) => {
-    const countryId = parseInt(req.body.countryId);
-    const cityName = req.body.cityName;
-    City.create({
-        name: cityName,
-        countryId: countryId
-    })
-        .then(data => {
-            res.status(200).json({
-                msg: 'Ciudad creada',
-                data: data,
-                status: 200
-            })
-        })
-        .catch(err => {
-            res.status(400).json({
-                msg: 'Ocurrió un error, intente mas tarde.',
-                data: err,
-                status: 400
-            })
-        })
-}
-
-exports.allRegionsJSON = (req, res, next) => {
+async function buscarRegionesJSON(req, res){
     Region.findAll()
         .then(data => {
             res.status(200).json({
@@ -85,7 +41,7 @@ exports.allRegionsJSON = (req, res, next) => {
         })
 }
 
-exports.allRegions = (req, res, next) => {
+async function buscarRegiones(req, res){
     Region.findAll({
         include: {
             all: true,
@@ -109,7 +65,7 @@ exports.allRegions = (req, res, next) => {
         })
 }
 
-exports.deleteRegion = (req, res, next) => {
+async function borrarRegion(req, res){
     const id = req.body.id;
     Region.findByPk(id)
         .then(region => {
@@ -129,7 +85,7 @@ exports.deleteRegion = (req, res, next) => {
         })
 }
 
-exports.updateRegion = (req, res, next) => {
+async function editarRegion(req, res){
     const id = req.body.id;
     const regionName = req.body.name;
     Region.findByPk(id)
@@ -151,7 +107,32 @@ exports.updateRegion = (req, res, next) => {
         })
 }
 
-exports.deleteCountry = (req, res, next) => {
+//PAISES
+
+async function nuevoPais(req, res){
+    const regionId = parseInt(req.body.regionId);
+    const countryName = req.body.countryName;
+    Country.create({
+        name: countryName,
+        regionId: regionId
+    })
+        .then(data => {
+            res.status(200).json({
+                msg: 'Pais creado',
+                data: data,
+                status: 200
+            })
+        })
+        .catch(err => {
+            res.status(400).json({
+                msg: 'Ocurrió un error, intente mas tarde.',
+                error: err,
+                status: 400
+            })
+        })
+}
+
+async function borrarPais(req, res){
     const id = req.body.id;
     Country.findByPk(id)
         .then(country => {
@@ -171,7 +152,7 @@ exports.deleteCountry = (req, res, next) => {
         })
 }
 
-exports.updateCountry = (req, res, next) => {
+async function editarPais(req, res){
     const id = req.body.id;
     const countryName = req.body.name;
     Country.findByPk(id)
@@ -193,49 +174,7 @@ exports.updateCountry = (req, res, next) => {
         })
 }
 
-exports.deleteCity = (req, res, next) => {
-    const id = req.body.id;
-    City.findByPk(id)
-        .then(city => {
-            city.destroy();
-            res.status(200).json({
-                msg: 'Ciudad Eliminada',
-                data: city,
-                status: 200
-            })
-        })
-        .catch(err => {
-            res.status(400).json({
-                msg: 'ID Ciudad inexistente',
-                data: err,
-                status: 400
-            })
-        })
-}
-
-exports.updateCity = (req, res, next) => {
-    const id = req.body.id;
-    const cityName = req.body.name;
-    City.findByPk(id)
-        .then(city => {
-            city.name = cityName;
-            city.save();
-            res.status(200).json({
-                msg: 'Ciudad Actualzada',
-                data: city,
-                status: 200
-            })
-        })
-        .catch(err => {
-            res.status(400).json({
-                msg: 'ID Ciudad inexistente',
-                data: err,
-                status: 400
-            })
-        })
-}
-
-exports.getCountries = (req, res, next) => {
+async function buscarPaises(req, res){
     const regionId = req.body.regionId;
     Country.findAll({
         where: {
@@ -258,7 +197,74 @@ exports.getCountries = (req, res, next) => {
         })
 }
 
-exports.getCities = (req, res, next) => {
+//CIUDADES
+
+async function nuevaCiudad(req, res){
+    const countryId = parseInt(req.body.countryId);
+    const cityName = req.body.cityName;
+    City.create({
+        name: cityName,
+        countryId: countryId
+    })
+        .then(data => {
+            res.status(200).json({
+                msg: 'Ciudad creada',
+                data: data,
+                status: 200
+            })
+        })
+        .catch(err => {
+            res.status(400).json({
+                msg: 'Ocurrió un error, intente mas tarde.',
+                data: err,
+                status: 400
+            })
+        })
+}
+
+async function borrarCiudad(req, res){
+    const id = req.body.id;
+    City.findByPk(id)
+        .then(city => {
+            city.destroy();
+            res.status(200).json({
+                msg: 'Ciudad Eliminada',
+                data: city,
+                status: 200
+            })
+        })
+        .catch(err => {
+            res.status(400).json({
+                msg: 'ID Ciudad inexistente',
+                data: err,
+                status: 400
+            })
+        })
+}
+
+async function editarCiudad(req, res){
+    const id = req.body.id;
+    const cityName = req.body.name;
+    City.findByPk(id)
+        .then(city => {
+            city.name = cityName;
+            city.save();
+            res.status(200).json({
+                msg: 'Ciudad Actualzada',
+                data: city,
+                status: 200
+            })
+        })
+        .catch(err => {
+            res.status(400).json({
+                msg: 'ID Ciudad inexistente',
+                data: err,
+                status: 400
+            })
+        })
+}
+
+async function buscarCiudades(req, res){
     const countryId = req.body.countryId;
     City.findAll({
         where: {
@@ -279,4 +285,20 @@ exports.getCities = (req, res, next) => {
                 status: 400
             })
         })
+}
+
+module.exports = {
+    nuevaRegion,
+    buscarRegiones,
+    buscarRegionesJSON,
+    borrarRegion,
+    editarRegion,
+    nuevoPais,
+    buscarPaises,
+    editarPais,
+    borrarPais,
+    nuevaCiudad,
+    buscarCiudades,
+    editarCiudad,
+    borrarCiudad
 }

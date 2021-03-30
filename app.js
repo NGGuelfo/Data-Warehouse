@@ -13,9 +13,9 @@ const { config } = require('./config/config');
 const router = express.Router();
 const { buscarPais, checkCiudad, busquedaRegión, searchCompany, buscarInteres, existePuesto, checkTelefono, validaMail, buscarApellido, buscarNombre, validaAdmin, validaUsuario } = require('./middlewares');
 const endpointsUsuario = require('./endpoints/usuarios');
-const endpointsContacto = require('./endpoints/contactos');
-const endpointsRegion = require('./endpoints/regiones');
-const { buscarCompanias, buscarCompaniasJson, nuevaCompania, borrarCompania, editarCompania} = require('./endpoints/companias');
+const { nuevoContacto, buscarContacto, buscarContactos, editarContacto, borrarContacto, borrarContactos, contactoPorRegion, contactoPorPais, contactoPorCiudad, contactoPorCompania, formularioContacto, ordenarContacto } = require('./endpoints/contactos');
+const { nuevaRegion, buscarRegiones, buscarRegionesJSON, borrarRegion, editarRegion, nuevoPais, buscarPaises, editarPais, borrarPais, nuevaCiudad, buscarCiudades, editarCiudad, borrarCiudad } = require('./endpoints/regiones');
+const { buscarCompanias, buscarCompaniasJson, nuevaCompania, borrarCompania, editarCompania } = require('./endpoints/companias');
 
 const sequelize = new Sequelize(config.databaseName, config.username, config.password, {
     host: config.host,
@@ -62,25 +62,25 @@ router.put('/usuario', validaUsuario, validaAdmin, endpointsUsuario.editUser);
 router.delete('/usuario', validaUsuario, validaAdmin, endpointsUsuario.deleteUser);
 
 //Contactos
-router.get('/contactos', validaUsuario, endpointsContacto.getAllContacts);
-router.post('/contactos', validaUsuario, endpointsContacto.postNewContact);
-router.get('/contactos', validaUsuario, endpointsContacto.getContact);
-router.post('/contactos', validaUsuario, endpointsContacto.updateContact);
-router.delete('/contactos', validaUsuario, endpointsContacto.deleteContact);
-router.get('/contactos', validaUsuario, endpointsContacto.getContactsByRegion);
-router.post('/editar-contacto', validaUsuario, single('img'), endpointsContacto.updateContact);
-router.post('/uploads', validaUsuario, single('img'), endpointsContacto.postNewContact);
-router.get('/form-contact', validaUsuario, endpointsContacto.contactCreateForm);
-router.delete('/delete-contactos', validaUsuario, endpointsContacto.deleteAllContacts);
-router.post('/orden-contact', validaUsuario, endpointsContacto.orderAscendente);
+router.get('/contactos', validaUsuario, buscarContactos);
+router.post('/contactos', validaUsuario, nuevoContacto);
+router.get('/contactos', validaUsuario, buscarContacto);
+router.post('/contactos', validaUsuario, editarContacto);
+router.delete('/contactos', validaUsuario, borrarContacto);
+router.get('/contactos', validaUsuario, contactoPorRegion);
+router.post('/editar-contacto', validaUsuario, single('img'), editarContacto);
+router.post('/uploads', validaUsuario, single('img'), nuevoContacto);
+router.get('/form-contact', validaUsuario, formularioContacto);
+router.delete('/delete-contactos', validaUsuario, borrarContactos);
+router.post('/orden-contact', validaUsuario, ordenarContacto);
 router.post('/search-contacto', validaUsuario, buscarNombre, buscarApellido, validaMail, existePuesto, buscarInteres, checkTelefono, searchCompany, busquedaRegión, buscarPais, checkCiudad);
 
 //Region
-router.post('/region', validaUsuario, validaAdmin, endpointsRegion.postNewRegion);
-router.get('/region_city', validaUsuario, endpointsRegion.allRegions);
-router.delete('/region', validaUsuario, endpointsRegion.deleteRegion);
-router.put('/region', validaUsuario, endpointsRegion.updateRegion);
-router.get('/region', validaUsuario, endpointsRegion.allRegionsJSON);
+router.post('/region', validaUsuario, validaAdmin, nuevaRegion);
+router.get('/region_city', validaUsuario, buscarRegiones);
+router.delete('/region', validaUsuario, borrarRegion);
+router.put('/region', validaUsuario, editarRegion);
+router.get('/region', validaUsuario, buscarRegionesJSON);
 
 //Paises
 router.post('/country', validaUsuario, validaAdmin, endpointsRegion.postNewCountry);

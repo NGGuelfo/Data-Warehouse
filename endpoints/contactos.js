@@ -1,11 +1,8 @@
-const Contact = require('../models');
+const Contactos = require('../models');
 const Sequelize = require('sequelize');
-const {
-    col
-} = require('sequelize');
 const Op = Sequelize.Op;
 
-exports.postNewContact = (req, res, next) => {
+async function nuevoContacto(req, res){
     console.log(req.file);
     let newImg;
     if (req.file == undefined) {
@@ -50,7 +47,7 @@ exports.postNewContact = (req, res, next) => {
         })
 }
 
-exports.getAllContacts = (req, res, next) => {
+async function buscarContactos(req, res){
     Contact.findAll({
         include: {
             all: true,
@@ -76,8 +73,7 @@ exports.getAllContacts = (req, res, next) => {
         })
 }
 
-
-exports.getContact = (req, res, next) => {
+async function buscarContacto(req, res){
     const contactId = req.body.id;
     Contact.findByPk(contactId)
         .then(data => {
@@ -94,7 +90,7 @@ exports.getContact = (req, res, next) => {
         })
 }
 
-exports.updateContact = (req, res, next) => {
+async function editarContacto(req, res){
     console.log(req.file);
     let newImg;
     if (req.file == undefined) {
@@ -140,7 +136,7 @@ exports.updateContact = (req, res, next) => {
         })
 }
 
-exports.deleteContact = (req, res, next) => {
+async function borrarContacto(req, res){
     const contactId = req.body.id;
     Contact.findByPk(contactId)
         .then(contact => {
@@ -158,7 +154,7 @@ exports.deleteContact = (req, res, next) => {
         })
 }
 
-exports.deleteAllContacts = (req, res, next) => {
+async function borrarContactos(req, res){
     const id = req.body.ids;
     const ids = id.split(',');
     Contact.destroy({
@@ -180,8 +176,7 @@ exports.deleteAllContacts = (req, res, next) => {
         })
 }
 
-
-exports.getContactsByRegion = (req, res, next) => {
+async function contactoPorRegion(req, res){
     const regionId = req.body.search;
     Contact.findAll({
         where: {
@@ -211,7 +206,7 @@ exports.getContactsByRegion = (req, res, next) => {
         })
 }
 
-exports.getContactsByCompany = (req, res, next) => {
+async function contactoPorCompania(req, res){
     const companyId = req.body.search;
     Contact.findAll({
         where: {
@@ -241,7 +236,7 @@ exports.getContactsByCompany = (req, res, next) => {
         })
 }
 
-exports.getContactsByCity = (req, res, next) => {
+async function contactoPorCiudad(req, res){
     const cityId = req.body.search;
     Contact.findAll({
         where: {
@@ -271,7 +266,7 @@ exports.getContactsByCity = (req, res, next) => {
         })
 }
 
-exports.getContactsByCountry = (req, res, next) => {
+async function contactoPorPais(req, res){
     const countryId = req.body.search;
     Contact.findAll({
         where: {
@@ -301,14 +296,14 @@ exports.getContactsByCountry = (req, res, next) => {
         })
 }
 
-exports.contactCreateForm = (req, res, next) => {
+async function formularioContacto(req, res){
     res.status(200).render('form-contact', {
         title: 'Crear Contacto',
         msg: 'Form Create Contact'
     })
 }
 
-exports.orderAscendente = (req, res, next) => {
+async function ordenarContacto(req, res){
     const column = req.body.title;
     const direction = req.body.direction;
     console.log(column);
@@ -339,4 +334,19 @@ exports.orderAscendente = (req, res, next) => {
                 status: 400
             });
         })
+}
+
+module.exports = {
+    nuevoContacto,
+    buscarContacto,
+    buscarContactos,
+    editarContacto,
+    borrarContacto,
+    borrarContactos,
+    contactoPorRegion,
+    contactoPorPais,
+    contactoPorCiudad,
+    contactoPorCompania,
+    formularioContacto,
+    ordenarContacto
 }
