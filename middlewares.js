@@ -7,7 +7,7 @@ function validaUsuario(req, res, next) {
         const tokenVerification = jwt.verify(token, firma);
         const Id = tokenVerification.userData.id
         if (tokenVerification) {
-            User.findByPk(Id)
+            Usuarios.findByPk(Id)
                 .then((user) => {
                     req.user = user;
                     next();
@@ -243,7 +243,7 @@ function buscarInteres(req, res, next) {
 
 function searchCompany(req, res, next) {
     const search = req.body.search;
-    Compania.findAll({
+    Companias.findAll({
         where: {
             name: search
         }

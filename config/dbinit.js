@@ -1,27 +1,29 @@
 const Sequelize = require('sequelize');
+const { config } = require('./config/config');
+const { Ciudad, Usuarios, Contactos, Companias, Regiones, Paises } = require('../models');
+const bcrypt = require('bcryptjs');
+const password = bcrypt.hashSync('admin1234', 12);
 
 const sequelize = new Sequelize(config.databaseName, config.username, config.password, {
     host: config.host,
     dialect: config.dialect
 });
-const { Contact, User, Contact, Company, Region, Country } = require('../models');
-const bcrypt = require('bcryptjs');
-const password = bcrypt.hashSync('admin1234', 12);
 
-Contact.belongsTo(User, {
+Contactos.belongsTo(Usuarios, {
     constraints: true,
     onDelete: 'CASCADE'
 });
-User.hasMany(Contact);
-Contact.belongsTo(Company);
-Company.belongsTo(City);
-Contact.belongsTo(City);
-Contact.belongsTo(Country);
-Contact.belongsTo(Region);
-Country.hasMany(City);
-City.belongsTo(Country);
-Region.hasMany(Country);
-Country.belongsTo(Region);
+
+Usuarios.hasMany(Contactos);
+Contactos.belongsTo(Companias);
+Companias.belongsTo(Ciudad);
+Contactos.belongsTo(Ciudad);
+Contactos.belongsTo(Paises);
+Contactos.belongsTo(Regiones);
+Paises.hasMany(Ciudad);
+Ciudad.belongsTo(Paises);
+Regiones.hasMany(Paises);
+Paises.belongsTo(Regiones);
 
 const contacts = [{
     id: 1,

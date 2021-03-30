@@ -19,7 +19,7 @@ const Ciudad = sequelize.define('city', {
     name: Sequelize.STRING
 });
 
-const Usuario = sequelize.define('user', {
+const Usuarios = sequelize.define('user', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
