@@ -1,7 +1,7 @@
-const Company = require('../models');
+const Companias = require('../models');
 
 exports.getAllCompanies = async function (req, res, next) {
-    await Company.findAll({
+    await Companias.findAll({
         include: {
             all: true,
             nested: true
@@ -10,8 +10,6 @@ exports.getAllCompanies = async function (req, res, next) {
         .then(data => {
             //console.log(JSON.stringify(data, null, 2));
             res.status(200).render('home', {
-                title: 'Companías',
-                msg: 'Companías',
                 data: data
             })
         })
@@ -21,14 +19,13 @@ exports.getAllCompanies = async function (req, res, next) {
 }
 
 exports.getAllCompaniesJson = async function (req, res, next) {
-    await Company.findAll({
+    await Companias.findAll({
         include: {
             all: true,
             nested: true
         }
     })
         .then(data => {
-            //console.log(JSON.stringify(data, null, 2));
             res.status(200).json({
                 msg: 'Companías',
                 data: data,
@@ -46,7 +43,8 @@ exports.postNewCompany = (req, res, next) => {
     const phone = req.body.phone;
     const email = req.body.email;
     const cityId = req.body.cityId;
-    Company.create({
+
+    Companias.create({
         name: name,
         adress: adress,
         email: email,
@@ -55,7 +53,7 @@ exports.postNewCompany = (req, res, next) => {
     })
         .then(result => {
             res.status(200).json({
-                msg: 'Companía creada.',
+                msg: 'Companía creada Exitosamente.',
                 data: result,
                 status: 200
             })
@@ -71,7 +69,7 @@ exports.postNewCompany = (req, res, next) => {
 
 exports.deleteCompany = (req, res, next) => {
     const id = req.body.id;
-    Company.findByPk(id)
+    Companias.findByPk(id)
         .then(data => {
             data.destroy();
             res.status(200).json({
@@ -96,7 +94,7 @@ exports.editCompany = (req, body, next) => {
     const phone = req.body.phone;
     const email = req.body.email;
     const cityId = req.body.cityId;
-    Company.findByPk(id)
+    Companias.findByPk(id)
         .then(data => {
             data.name = name;
             data.adress = adress;
@@ -112,7 +110,7 @@ exports.editCompany = (req, body, next) => {
         })
         .catch(err => {
             res.status(400).json({
-                msg: 'ID erróneo o compania inexistente',
+                msg: 'Compania inexistente',
                 data: err,
                 status: 400
             })
