@@ -48,7 +48,7 @@ function createRegion() {
     }
 }
 
-function deleteCountry(){
+function deleteCountry() {
     $('#jstree').on("changed.jstree", function (e, data) {
         searchId = data.selected[0].split(" ");
         let countryId = searchId[1];
@@ -180,7 +180,7 @@ function editCity() {
     });
 }
 
-function postNewCity(){
+function postNewCity() {
     let cityName = document.getElementById('city-name').value;
     let countryId = searchId[1];
     if (cityName.length > 0) {
@@ -214,7 +214,7 @@ function postNewCity(){
     }
 }
 
-function putCity(){
+function putCity() {
     let newCityName = document.getElementById('edit-city-name').value;
     let cityId = searchId[1];
     if (newCityName.length > 0) {
@@ -248,7 +248,7 @@ function putCity(){
     }
 }
 
-function deleteCity(){
+function deleteCity() {
     $('#jstree').on("changed.jstree", function (e, data) {
         searchId = data.selected[0].split(" ");
         let cityId = searchId[1];
