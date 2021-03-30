@@ -263,16 +263,16 @@ sequelize
         console.log('Base de datos en funcionamiento');
     })
     .then(() => {
-        users.forEach(users => User.create(users));
+        users.forEach(users => Usuarios.create(users));
     })
     .then(() => {
-        regions.forEach(regions => Region.create(regions));
+        regions.forEach(regions => Regiones.create(regions));
     })
     .then(() => {
-        countries.forEach(countries => Country.create(countries));
+        countries.forEach(countries => Paises.create(countries));
     })
     .then(() => {
-        cities.forEach(cities => City.create(cities));
+        cities.forEach(cities => Ciudad.create(cities));
     })
     .then(() => {
         setTimeout(crearCyC, 2000);
@@ -284,9 +284,9 @@ function crearCyC() {
             force: false
         })
         .then(() => {
-            companies.forEach(companies => Company.create(companies));
+            companies.forEach(companies => Companias.create(companies));
         })
         .then(() => {
-            contacts.forEach(contacts => Contact.create(contacts));
+            contacts.forEach(contacts => Contactos.create(contacts));
         })
 }
