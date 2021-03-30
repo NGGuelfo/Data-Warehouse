@@ -1,20 +1,38 @@
-const sequelize = require('../data/database');
+const Sequelize = require('sequelize');
+
+const sequelize = new Sequelize(config.databaseName, config.username, config.password, {
+    host: config.host,
+    dialect: config.dialect
+});
 const { Contact, User, Contact, Company, Region, Country } = require('../models');
-require('../data/associatons');
 const bcrypt = require('bcryptjs');
 const password = bcrypt.hashSync('admin1234', 12);
 
+Contact.belongsTo(User, {
+    constraints: true,
+    onDelete: 'CASCADE'
+});
+User.hasMany(Contact);
+Contact.belongsTo(Company);
+Company.belongsTo(City);
+Contact.belongsTo(City);
+Contact.belongsTo(Country);
+Contact.belongsTo(Region);
+Country.hasMany(City);
+City.belongsTo(Country);
+Region.hasMany(Country);
+Country.belongsTo(Region);
 
 const contacts = [{
         id: 1,
-        name: 'Carlos',
-        lastname: 'Perez',
-        email: 'cprez@mail.com',
+        name: 'Nicolas',
+        lastname: 'Guelfo',
+        email: 'nguelfo@mail.com',
         position: 'Developer',
-        phone: '+549111234567890',
+        phone: '+11158694896',
         img: 'avatar.jpg',
-        adress: 'Dirección 1234',
-        interest: 50,
+        adress: 'Vallejos 1234',
+        interest: 25,
         userId: 1,
         companyId: 1,
         cityId: 1,
@@ -23,14 +41,14 @@ const contacts = [{
     },
     {
         id: 2,
-        name: 'Marcelo',
-        lastname: 'Gonzalez',
-        email: 'mgonzalez@mail.com',
+        name: 'Gaston',
+        lastname: 'Dandre',
+        email: 'gdandre@mail.com',
         position: 'Developer',
-        phone: '+549111234567890',
+        phone: '+5491184561235',
         img: 'avatar.jpg',
-        adress: 'Dirección 1234',
-        interest: 75,
+        adress: 'Lapegue 1986',
+        interest: 100,
         userId: 1,
         companyId: 1,
         cityId: 1,
@@ -49,9 +67,9 @@ const users = [{
     },
     {
         id: 2,
-        name: 'User',
-        lastname: 'user',
-        email: 'user@mail.com',
+        name: 'Anto',
+        lastname: 'Bayugar',
+        email: 'abayugar@mail.com',
         admin: 0,
         password: password
     }
@@ -85,7 +103,7 @@ const regions = [{
 
 const countries = [{
         id: 1,
-        name: 'Estados Unidos',
+        name: 'Canada',
         regionId: 2
     },
     {
@@ -95,17 +113,17 @@ const countries = [{
     },
     {
         id: 3,
-        name: 'Canada',
+        name: 'EEUU',
         regionId: 2
     },
     {
         id: 4,
-        name: 'España',
+        name: 'Dinamarca',
         regionId: 4
     },
     {
         id: 5,
-        name: 'Australia',
+        name: 'Nueva Zelanda',
         regionId: 6
     },
     {
@@ -125,12 +143,12 @@ const countries = [{
     },
     {
         id: 9,
-        name: 'Francia',
+        name: 'Alemania',
         regionId: 4
     },
     {
         id: 10,
-        name: 'Reino Unido',
+        name: 'Polonia',
         regionId: 4
     }
 ];
@@ -138,12 +156,12 @@ const countries = [{
 
 const cities = [{
         id: 1,
-        name: 'Miami',
+        name: 'Ottawa',
         countryId: 1
     },
     {
         id: 2,
-        name: 'New York',
+        name: 'Quebec',
         countryId: 1
     },
     {
@@ -153,37 +171,37 @@ const cities = [{
     },
     {
         id: 4,
-        name: 'Neuquén',
+        name: 'Chubut',
         countryId: 2
     },
     {
         id: 5,
-        name: 'Toronto',
+        name: 'Texas',
         countryId: 3
     },
     {
         id: 7,
-        name: 'Montreal',
+        name: 'California',
         countryId: 3
     },
     {
         id: 8,
-        name: 'Barcelona',
+        name: 'Aarhus',
         countryId: 4
     },
     {
         id: 9,
-        name: 'Madrid',
+        name: 'Copenhague',
         countryId: 4
     },
     {
         id: 10,
-        name: 'Sidney',
+        name: 'Wellington',
         countryId: 5
     },
     {
         id: 11,
-        name: 'Melbourne',
+        name: 'Queenstown',
         countryId: 5
     },
     {
@@ -203,27 +221,35 @@ const cities = [{
     },
     {
         id: 15,
-        name: 'París',
+        name: 'Berlin',
         countryId: 9
     },
     {
         id: 16,
-        name: 'Marsella',
+        name: 'Dublin',
         countryId: 9
     },
     {
         id: 17,
-        name: 'Londres',
+        name: 'Varsovia',
         countryId: 10
     }
 ];
 
 const companies = [{
     id: 1,
-    name: 'YPF',
-    adress: 'Machaca Güemes 515',
-    email: 'contacto@ypf.com',
-    phone: '011-5441-0000',
+    name: 'Baco Club S.A.',
+    adress: 'Av. Lope de Vega 123',
+    email: 'contacto@bacoclub.com.ar',
+    phone: '0800-122-8569',
+    cityId: 4
+},
+{
+    id: 2,
+    name: 'Gobierno de la Ciudad de Buenos Aires',
+    adress: 'Av. Ingeniero Huergo 949',
+    email: 'contacto@gcba.gob.ar',
+    phone: '0800-111-8975',
     cityId: 3
 }];
 
@@ -232,7 +258,7 @@ sequelize
         force: true
     })
     .then(() => {
-        console.log('Database connected');
+        console.log('Base de datos en funcionamiento');
     })
     .then(() => {
         users.forEach(users => User.create(users));

@@ -1,5 +1,9 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../data/database');
+
+const sequelize = new Sequelize(config.databaseName, config.username, config.password, {
+    host: config.host,
+    dialect: config.dialect
+});
 const jwt = require('jsonwebtoken');
 const { config } = require('../config/config');
 const firma = config.secret_key;

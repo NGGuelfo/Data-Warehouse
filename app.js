@@ -1,5 +1,10 @@
 //Importar dependencias instaladas
+const Sequelize = require('sequelize');
 
+const sequelize = new Sequelize(config.databaseName, config.username, config.password, {
+    host: config.host,
+    dialect: config.dialect
+});
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -8,12 +13,7 @@ const ejs = require('ejs');
 const path = require('path');
 const ejsLint = require('ejs-lint');
 const cookieParser = require('cookie-parser');
-const sequelize = require('./data/database');
-const {
-    config
-} = require('./config/config');
-
-require('./data/associatons');
+const { config } = require('./config/config');
 const router = express.Router();
 const { authController, upload, searcher } = require ('../middlewares');
 const userController = require('../controller/users');
@@ -21,6 +21,20 @@ const contactsController = require('../controller/contacts');
 const regionController = require('../controller/regions');
 const companiesController = require('../controller/companies');
 
+Contact.belongsTo(User, {
+    constraints: true,
+    onDelete: 'CASCADE'
+});
+User.hasMany(Contact);
+Contact.belongsTo(Company);
+Company.belongsTo(City);
+Contact.belongsTo(City);
+Contact.belongsTo(Country);
+Contact.belongsTo(Region);
+Country.hasMany(City);
+City.belongsTo(Country);
+Region.hasMany(Country);
+Country.belongsTo(Region);
 
 app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
