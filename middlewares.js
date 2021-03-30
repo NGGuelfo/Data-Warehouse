@@ -1,4 +1,4 @@
-const { jwt, firma, Contact, City, Region, Company, Country, User } = require('../models');
+const { jwt, firma, Contactos, Ciudad, Regiones, Companias, Paises, Usuarios } = require('../models');
 const multer = require('multer');
 
 function validaUsuario(req, res, next) {
@@ -39,7 +39,7 @@ function validaAdmin(req, res, next) {
 
 function buscarNombre(req, res, next) {
     const search = req.body.search;
-    Contact.findAll({
+    Contactos.findAll({
         where: {
             name: search
         },
@@ -48,13 +48,13 @@ function buscarNombre(req, res, next) {
             nested: true
         }
     })
-        .then((contacts) => {
-            if (contacts.length > 0) {
-                console.log(JSON.stringify(contacts, null, 2));
+        .then((result) => {
+            if (result.length > 0) {
+                console.log(JSON.stringify(result, null, 2));
                 res.status(200).render('home', {
                     title: 'Contactos',
                     msg: 'Contactos',
-                    data: contacts,
+                    data: result,
                     status: 200
                 })
             } else {
@@ -64,7 +64,7 @@ function buscarNombre(req, res, next) {
         .catch(err => {
             res.status(400).render('home', {
                 title: 'Contactos',
-                msg: 'Ocurrió un error, intente mas tarde.',
+                msg: 'Error Encontrado. Intente mas tarde',
                 data: err,
                 status: 400
             });
@@ -73,7 +73,7 @@ function buscarNombre(req, res, next) {
 
 function buscarApellido(req, res, next) {
     const search = req.body.search;
-    Contact.findAll({
+    Contactos.findAll({
         where: {
             lastname: search
         },
@@ -82,13 +82,13 @@ function buscarApellido(req, res, next) {
             nested: true
         }
     })
-        .then((contacts) => {
-            if (contacts.length > 0) {
-                console.log(JSON.stringify(contacts, null, 2));
+        .then((resultado) => {
+            if (resultado.length > 0) {
+                console.log(JSON.stringify(resultado, null, 2));
                 res.status(200).render('home', {
                     title: 'Contactos',
                     msg: 'Contactos',
-                    data: contacts,
+                    data: resultado,
                     status: 200
                 })
             } else {
@@ -98,7 +98,7 @@ function buscarApellido(req, res, next) {
         .catch(err => {
             res.status(400).render('home', {
                 title: 'Contactos',
-                msg: 'Ocurrió un error, intente mas tarde.',
+                msg: 'Problema Encontrado. Intente mas tarde',
                 data: err,
                 status: 400
             });
@@ -107,7 +107,7 @@ function buscarApellido(req, res, next) {
 
 function validaMail(req, res, next) {
     const search = req.body.search;
-    Contact.findAll({
+    Contactos.findAll({
         where: {
             email: search
         },
@@ -116,13 +116,13 @@ function validaMail(req, res, next) {
             nested: true
         }
     })
-        .then((contacts) => {
-            if (contacts.length > 0) {
-                console.log(JSON.stringify(contacts, null, 2));
+        .then((result) => {
+            if (result.length > 0) {
+                console.log(JSON.stringify(result, null, 2));
                 res.status(200).render('home', {
                     title: 'Contactos',
                     msg: 'Contactos',
-                    data: contacts,
+                    data: result,
                     status: 200
                 })
             } else {
@@ -132,7 +132,7 @@ function validaMail(req, res, next) {
         .catch(err => {
             res.status(400).render('home', {
                 title: 'Contactos',
-                msg: 'Ocurrió un error, intente mas tarde.',
+                msg: 'ERROR 400. Intente mas Tarde',
                 data: err,
                 status: 400
             });
@@ -141,7 +141,7 @@ function validaMail(req, res, next) {
 
 function checkTelefono(req, res, next) {
     const search = req.body.search;
-    Contact.findAll({
+    Contactos.findAll({
         where: {
             phone: search
         },
@@ -150,13 +150,13 @@ function checkTelefono(req, res, next) {
             nested: true
         }
     })
-        .then((contacts) => {
-            if (contacts.length > 0) {
-                console.log(JSON.stringify(contacts, null, 2));
+        .then((resultado) => {
+            if (resultado.length > 0) {
+                console.log(JSON.stringify(resultado, null, 2));
                 res.status(200).render('home', {
                     title: 'Contactos',
                     msg: 'Contactos',
-                    data: contacts,
+                    data: resultado,
                     status: 200
                 })
             } else {
@@ -166,7 +166,7 @@ function checkTelefono(req, res, next) {
         .catch(err => {
             res.status(400).render('home', {
                 title: 'Contactos',
-                msg: 'Ocurrió un error, intente mas tarde.',
+                msg: 'Error 400. Intente nuevamente mas tarde.',
                 data: err,
                 status: 400
             });
@@ -175,7 +175,7 @@ function checkTelefono(req, res, next) {
 
 function existePuesto(req, res, next) {
     const search = req.body.search;
-    Contact.findAll({
+    Contactos.findAll({
         where: {
             position: search
         },
@@ -184,13 +184,13 @@ function existePuesto(req, res, next) {
             nested: true
         }
     })
-        .then((contacts) => {
-            if (contacts.length > 0) {
-                console.log(JSON.stringify(contacts, null, 2));
+        .then((resultado) => {
+            if (resultado.length > 0) {
+                console.log(JSON.stringify(resultado, null, 2));
                 res.status(200).render('home', {
                     title: 'Contactos',
                     msg: 'Contactos',
-                    data: contacts,
+                    data: resultado,
                     status: 200
                 })
             } else {
@@ -209,7 +209,7 @@ function existePuesto(req, res, next) {
 
 function buscarInteres(req, res, next) {
     const search = req.body.search;
-    Contact.findAll({
+    Contactos.findAll({
         where: {
             interest: search
         },
@@ -218,13 +218,13 @@ function buscarInteres(req, res, next) {
             nested: true
         }
     })
-        .then((contacts) => {
-            if (contacts.length > 0) {
-                console.log(JSON.stringify(contacts, null, 2));
+        .then((result) => {
+            if (result.length > 0) {
+                console.log(JSON.stringify(result, null, 2));
                 res.status(200).render('home', {
                     title: 'Contactos',
                     msg: 'Contactos',
-                    data: contacts,
+                    data: result,
                     status: 200
                 })
             } else {
@@ -234,7 +234,7 @@ function buscarInteres(req, res, next) {
         .catch(err => {
             res.status(400).render('home', {
                 title: 'Contactos',
-                msg: 'Ocurrió un error, intente mas tarde.',
+                msg: 'Ocurrió un error.',
                 data: err,
                 status: 400
             });
@@ -243,15 +243,15 @@ function buscarInteres(req, res, next) {
 
 function searchCompany(req, res, next) {
     const search = req.body.search;
-    Company.findAll({
+    Compania.findAll({
         where: {
             name: search
         }
     })
-        .then(company => {
-            if (company.length > 0) {
-                const companyId = company[0].dataValues.id;
-                Contact.findAll({
+        .then(data => {
+            if (data.length > 0) {
+                const companyId = data[0].dataValues.id;
+                Contactos.findAll({
                     where: {
                         companyId: companyId
                     },
@@ -260,21 +260,21 @@ function searchCompany(req, res, next) {
                         nested: true
                     }
                 })
-                    .then(contacts => {
-                        console.log(JSON.stringify(contacts, null, 2));
+                    .then(data => {
+                        console.log(JSON.stringify(data, null, 2));
                         res.status(200).render('home', {
                             title: 'Contactos',
                             msg: 'Contactos',
-                            data: contacts,
+                            data: data,
                             status: 200
                         })
                     })
                     .catch(err => {
-                        res.status(400).render('home', {
+                        res.status(404).render('home', {
                             title: 'Contactos',
-                            msg: 'Ocurrió un error, intente mas tarde.',
+                            msg: 'No encontrado.',
                             data: err,
-                            status: 400
+                            status: 404
                         });
                     })
             } else {
@@ -284,7 +284,7 @@ function searchCompany(req, res, next) {
         .catch(err => {
             res.status(400).render('home', {
                 title: 'Contactos',
-                msg: 'Ocurrió un error, intente mas tarde.',
+                msg: 'Intente mas tarde.',
                 data: err,
                 status: 400
             });
@@ -293,37 +293,37 @@ function searchCompany(req, res, next) {
 
 function busquedaRegión(req, res, next) {
     const search = req.body.search;
-    Region.findAll({
+    Regiones.findAll({
         where: {
             name: search
         }
     })
-        .then(region => {
-            if (region.length > 0) {
-                const regionId = region[0].dataValues.id;
-                console.log(regionId);
-                Contact.findAll({
+        .then(data => {
+            if (data.length > 0) {
+                const Id = data[0].dataValues.id;
+                console.log(Id);
+                Contactos.findAll({
                     where: {
-                        regionId: regionId
+                        regionId: Id
                     },
                     include: {
                         all: true,
                         nested: true
                     }
                 })
-                    .then(contacts => {
-                        console.log(JSON.stringify(contacts, null, 2));
+                    .then(data => {
+                        console.log(JSON.stringify(data, null, 2));
                         res.status(200).render('home', {
                             title: 'Contactos',
                             msg: 'Contactos',
-                            data: contacts,
+                            data: data,
                             status: 200
                         })
                     })
                     .catch(err => {
                         res.status(400).render('home', {
-                            title: 'Contactos',
-                            msg: 'Ocurrió un error, intente mas tarde.',
+                            title: 'Error',
+                            msg: 'Ocurrió un error.',
                             data: err,
                             status: 400
                         });
@@ -334,7 +334,7 @@ function busquedaRegión(req, res, next) {
         })
         .catch(err => {
             res.status(400).render('home', {
-                title: 'Contactos',
+                title: 'Error 400',
                 msg: 'Ocurrió un error, intente mas tarde.',
                 data: err,
                 status: 400
@@ -344,36 +344,36 @@ function busquedaRegión(req, res, next) {
 
 function checkCiudad(req, res, next) {
     const search = req.body.search;
-    City.findAll({
+    Ciudad.findAll({
         where: {
             name: search
         }
     })
-        .then(city => {
-            if (city.length > 0) {
-                const cityId = city[0].dataValues.id;
-                Contact.findAll({
+        .then(data => {
+            if (data.length > 0) {
+                const Id = data[0].dataValues.id;
+                Contactos.findAll({
                     where: {
-                        cityId: cityId
+                        cityId: Id
                     },
                     include: {
                         all: true,
                         nested: true
                     }
                 })
-                    .then(contacts => {
-                        console.log(JSON.stringify(contacts, null, 2));
+                    .then(data => {
+                        console.log(JSON.stringify(data, null, 2));
                         res.status(200).render('home', {
                             title: 'Contactos',
                             msg: 'Contactos',
-                            data: contacts,
+                            data: data,
                             status: 200
                         })
                     })
                     .catch(err => {
                         res.status(400).render('home', {
                             title: 'Contactos',
-                            msg: 'Ocurrió un error, intente mas tarde.',
+                            msg: 'Error, intente mas tarde.',
                             data: err,
                             status: 400
                         });
@@ -382,7 +382,7 @@ function checkCiudad(req, res, next) {
                 res.status(200).render('home', {
                     title: 'Contactos',
                     msg: 'Contactos',
-                    data: city,
+                    data: data,
                     status: 200
                 })
             }
@@ -390,7 +390,7 @@ function checkCiudad(req, res, next) {
         .catch(err => {
             res.status(400).render('home', {
                 title: 'Contactos',
-                msg: 'Ocurrió un error, intente mas tarde.',
+                msg: 'Ocurrió un error.',
                 data: err,
                 status: 400
             });
@@ -399,36 +399,36 @@ function checkCiudad(req, res, next) {
 
 function buscarPais(req, res, next) {
     const search = req.body.search;
-    Country.findAll({
+    Paises.findAll({
         where: {
             name: search
         }
     })
-        .then(country => {
-            if (country.length > 0) {
-                const countryId = country[0].dataValues.id;
-                Contact.findAll({
+        .then(data => {
+            if (data.length > 0) {
+                const Id = data[0].dataValues.id;
+                Contactos.findAll({
                     where: {
-                        countryId: countryId
+                        countryId: Id
                     },
                     include: {
                         all: true,
                         nested: true
                     }
                 })
-                    .then(contacts => {
-                        console.log(JSON.stringify(contacts, null, 2));
+                    .then(data => {
+                        console.log(JSON.stringify(data, null, 2));
                         res.status(200).render('home', {
                             title: 'Contactos',
                             msg: 'Contactos',
-                            data: contacts,
+                            data: data,
                             status: 200
                         })
                     })
                     .catch(err => {
                         res.status(400).render('home', {
-                            title: 'Contactos',
-                            msg: 'Ocurrió un error, intente mas tarde.',
+                            title: 'Error 400',
+                            msg: 'Intente mas tarde.',
                             data: err,
                             status: 400
                         });

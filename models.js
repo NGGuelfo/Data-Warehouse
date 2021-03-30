@@ -1,14 +1,15 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize(config.databaseName, config.username, config.password, {
-    host: config.host,
-    dialect: config.dialect
-});
 const jwt = require('jsonwebtoken');
 const { config } = require('../config/config');
 const firma = config.secret_key;
 
-const City = sequelize.define('city', {
+const sequelize = new Sequelize(config.databaseName, config.username, config.password, {
+    host: config.host,
+    dialect: config.dialect
+});
+
+const Ciudad = sequelize.define('city', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -18,7 +19,7 @@ const City = sequelize.define('city', {
     name: Sequelize.STRING
 });
 
-const User = sequelize.define('user', {
+const Usuario = sequelize.define('user', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -38,7 +39,7 @@ const User = sequelize.define('user', {
     password: Sequelize.STRING
 });
 
-const Company = sequelize.define('company', {
+const Companias = sequelize.define('company', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -54,7 +55,7 @@ const Company = sequelize.define('company', {
     phone: Sequelize.STRING
 });
 
-const Contact = sequelize.define('contact', {
+const Contactos = sequelize.define('contact', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -74,7 +75,7 @@ const Contact = sequelize.define('contact', {
     interest: Sequelize.INTEGER
 });
 
-const Country = sequelize.define('country', {
+const Paises = sequelize.define('country', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -84,7 +85,7 @@ const Country = sequelize.define('country', {
     name: Sequelize.STRING
 });
 
-const Region = sequelize.define('region', {
+const Regiones = sequelize.define('region', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -95,12 +96,12 @@ const Region = sequelize.define('region', {
 });
 
 module.exports = {
-    City,
-    User,
-    Company,
-    Contact,
-    Country,
-    Region,
+    Ciudad,
+    Usuario,
+    Companias,
+    Contactos,
+    Paises,
+    Regiones,
     jwt,
     firma
 };
