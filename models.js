@@ -103,4 +103,4 @@ module.exports = {
     Region,
     jwt,
     firma
-    };
+};

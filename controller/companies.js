@@ -2,11 +2,11 @@ const Company = require('../models');
 
 exports.getAllCompanies = async function (req, res, next) {
     await Company.findAll({
-            include: {
-                all: true,
-                nested: true
-            }
-        })
+        include: {
+            all: true,
+            nested: true
+        }
+    })
         .then(data => {
             //console.log(JSON.stringify(data, null, 2));
             res.status(200).render('home', {
@@ -22,11 +22,11 @@ exports.getAllCompanies = async function (req, res, next) {
 
 exports.getAllCompaniesJson = async function (req, res, next) {
     await Company.findAll({
-            include: {
-                all: true,
-                nested: true
-            }
-        })
+        include: {
+            all: true,
+            nested: true
+        }
+    })
         .then(data => {
             //console.log(JSON.stringify(data, null, 2));
             res.status(200).json({
@@ -47,12 +47,12 @@ exports.postNewCompany = (req, res, next) => {
     const email = req.body.email;
     const cityId = req.body.cityId;
     Company.create({
-            name: name,
-            adress: adress,
-            email: email,
-            phone: phone,
-            cityId: cityId
-        })
+        name: name,
+        adress: adress,
+        email: email,
+        phone: phone,
+        cityId: cityId
+    })
         .then(result => {
             res.status(200).json({
                 msg: 'Companía creada.',
@@ -75,10 +75,10 @@ exports.deleteCompany = (req, res, next) => {
         .then(data => {
             data.destroy();
             res.status(200).json({
-                    msg: 'Compania Eliminada',
-                    data: data,
-                    status: 200
-                })
+                msg: 'Compania Eliminada',
+                data: data,
+                status: 200
+            })
                 .catch(err => {
                     res.status(400).json({
                         msg: 'ID erróneo o compania inexistente',

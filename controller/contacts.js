@@ -25,19 +25,19 @@ exports.postNewContact = (req, res, next) => {
     const newRegion = req.body.regionId;
     const newCountry = req.body.countryId;
     req.user.createContact({
-            name: newName,
-            lastname: newLastname,
-            email: newEmail,
-            phone: newPhone,
-            img: newImg,
-            adress: newAdress,
-            companyId: newCompany,
-            cityId: newCity,
-            position: newPosition,
-            interest: newInterest,
-            countryId: newCountry,
-            regionId: newRegion
-        })
+        name: newName,
+        lastname: newLastname,
+        email: newEmail,
+        phone: newPhone,
+        img: newImg,
+        adress: newAdress,
+        companyId: newCompany,
+        cityId: newCity,
+        position: newPosition,
+        interest: newInterest,
+        countryId: newCountry,
+        regionId: newRegion
+    })
         .then(data => {
             res.status(200).redirect('http://localhost:3000/contactos')
         })
@@ -52,11 +52,11 @@ exports.postNewContact = (req, res, next) => {
 
 exports.getAllContacts = (req, res, next) => {
     Contact.findAll({
-            include: {
-                all: true,
-                nested: true
-            }
-        })
+        include: {
+            all: true,
+            nested: true
+        }
+    })
         .then(contacts => {
             console.log(JSON.stringify(contacts, null, 2));
             res.status(200).render('home', {
@@ -162,10 +162,10 @@ exports.deleteAllContacts = (req, res, next) => {
     const id = req.body.ids;
     const ids = id.split(',');
     Contact.destroy({
-            where: {
-                id: ids
-            }
-        })
+        where: {
+            id: ids
+        }
+    })
         .then(data => {
             res.status(200).json({
                 msg: 'Contactos eliminados',
@@ -184,14 +184,14 @@ exports.deleteAllContacts = (req, res, next) => {
 exports.getContactsByRegion = (req, res, next) => {
     const regionId = req.body.search;
     Contact.findAll({
-            where: {
-                regionId: regionId
-            },
-            include: {
-                all: true,
-                nested: true
-            }
-        })
+        where: {
+            regionId: regionId
+        },
+        include: {
+            all: true,
+            nested: true
+        }
+    })
         .then(contacts => {
             console.log(JSON.stringify(contacts, null, 2));
             res.status(200).render('home', {
@@ -214,14 +214,14 @@ exports.getContactsByRegion = (req, res, next) => {
 exports.getContactsByCompany = (req, res, next) => {
     const companyId = req.body.search;
     Contact.findAll({
-            where: {
-                companyId: companyId
-            },
-            include: {
-                all: true,
-                nested: true
-            }
-        })
+        where: {
+            companyId: companyId
+        },
+        include: {
+            all: true,
+            nested: true
+        }
+    })
         .then(contacts => {
             console.log(JSON.stringify(contacts, null, 2));
             res.status(200).render('home', {
@@ -244,14 +244,14 @@ exports.getContactsByCompany = (req, res, next) => {
 exports.getContactsByCity = (req, res, next) => {
     const cityId = req.body.search;
     Contact.findAll({
-            where: {
-                cityId: cityId
-            },
-            include: {
-                all: true,
-                nested: true
-            }
-        })
+        where: {
+            cityId: cityId
+        },
+        include: {
+            all: true,
+            nested: true
+        }
+    })
         .then(contacts => {
             console.log(JSON.stringify(contacts, null, 2));
             res.status(200).render('home', {
@@ -274,14 +274,14 @@ exports.getContactsByCity = (req, res, next) => {
 exports.getContactsByCountry = (req, res, next) => {
     const countryId = req.body.search;
     Contact.findAll({
-            where: {
-                countryId: countryId
-            },
-            include: {
-                all: true,
-                nested: true
-            }
-        })
+        where: {
+            countryId: countryId
+        },
+        include: {
+            all: true,
+            nested: true
+        }
+    })
         .then(contacts => {
             console.log(JSON.stringify(contacts, null, 2));
             res.status(200).render('home', {
@@ -314,14 +314,14 @@ exports.orderAscendente = (req, res, next) => {
     console.log(column);
     console.log(direction);
     Contact.findAll({
-            order: [
-                [column, direction]
-            ],
-            include: {
-                all: true,
-                nested: true
-            }
-        })
+        order: [
+            [column, direction]
+        ],
+        include: {
+            all: true,
+            nested: true
+        }
+    })
         .then(contacts => {
             console.log(JSON.stringify(contacts, null, 2));
             res.status(200).render('home', {

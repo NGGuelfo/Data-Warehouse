@@ -1,10 +1,10 @@
-const {Region, Country, City} = require('../models');
+const { Region, Country, City } = require('../models');
 
 exports.postNewRegion = (req, res, next) => {
     const regionName = req.body.regionName;
     Region.create({
-            name: regionName
-        })
+        name: regionName
+    })
         .then(data => {
             res.status(200).json({
                 msg: 'Región creada',
@@ -25,9 +25,9 @@ exports.postNewCountry = (req, res, next) => {
     const regionId = parseInt(req.body.regionId);
     const countryName = req.body.countryName;
     Country.create({
-            name: countryName,
-            regionId: regionId
-        })
+        name: countryName,
+        regionId: regionId
+    })
         .then(data => {
             res.status(200).json({
                 msg: 'Pais creado',
@@ -48,9 +48,9 @@ exports.postNewCity = (req, res, next) => {
     const countryId = parseInt(req.body.countryId);
     const cityName = req.body.cityName;
     City.create({
-            name: cityName,
-            countryId: countryId
-        })
+        name: cityName,
+        countryId: countryId
+    })
         .then(data => {
             res.status(200).json({
                 msg: 'Ciudad creada',
@@ -87,11 +87,11 @@ exports.allRegionsJSON = (req, res, next) => {
 
 exports.allRegions = (req, res, next) => {
     Region.findAll({
-            include: {
-                all: true,
-                nested: true
-            }
-        })
+        include: {
+            all: true,
+            nested: true
+        }
+    })
         .then(data => {
             //console.log(JSON.stringify(data, null, 2));
             res.status(200).render('home', {
@@ -238,10 +238,10 @@ exports.updateCity = (req, res, next) => {
 exports.getCountries = (req, res, next) => {
     const regionId = req.body.regionId;
     Country.findAll({
-            where: {
-                regionId: regionId
-            }
-        })
+        where: {
+            regionId: regionId
+        }
+    })
         .then(countries => {
             res.status(200).json({
                 msg: 'Países según region Id',
@@ -261,10 +261,10 @@ exports.getCountries = (req, res, next) => {
 exports.getCities = (req, res, next) => {
     const countryId = req.body.countryId;
     City.findAll({
-            where: {
-                countryId: countryId
-            }
-        })
+        where: {
+            countryId: countryId
+        }
+    })
         .then(cities => {
             res.status(200).json({
                 msg: 'Ciudades según Country ID',

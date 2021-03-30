@@ -16,10 +16,10 @@ exports.crearUsuario = (req, res, next) => {
     const newAdmin = req.body.perfil;
     const newPassword = req.body.password;
     User.findOne({
-            where: {
-                email: newEmail
-            }
-        })
+        where: {
+            email: newEmail
+        }
+    })
         .then(usuario => {
             if (usuario) {
                 return res.status(400).send({
@@ -63,10 +63,10 @@ exports.loginUsuario = (req, res, next) => {
     const password = req.body.password;
     var usuarioLog;
     User.findOne({
-            where: {
-                email: email
-            }
-        })
+        where: {
+            email: email
+        }
+    })
         .then(user => {
             usuarioLog = user;
             console.log(user);

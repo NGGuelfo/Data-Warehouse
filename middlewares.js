@@ -1,7 +1,7 @@
-const { jwt,firma, Contact, City, Region, Company, Country, User } = require('../models');
+const { jwt, firma, Contact, City, Region, Company, Country, User } = require('../models');
 const multer = require('multer');
 
-function validaUsuario(req, res, next){
+function validaUsuario(req, res, next) {
     try {
         const token = req.cookies.access_token;
         const tokenVerification = jwt.verify(token, firma);
@@ -23,7 +23,7 @@ function validaUsuario(req, res, next){
     }
 }
 
-function validaAdmin(req, res, next){
+function validaAdmin(req, res, next) {
     try {
         const token = req.cookies.access_token;
         const tokenVerification = jwt.verify(token, firma);
@@ -37,17 +37,17 @@ function validaAdmin(req, res, next){
     }
 }
 
-function buscarNombre(req, res, next){
+function buscarNombre(req, res, next) {
     const search = req.body.search;
     Contact.findAll({
-            where: {
-                name: search
-            },
-            include: {
-                all: true,
-                nested: true
-            }
-        })
+        where: {
+            name: search
+        },
+        include: {
+            all: true,
+            nested: true
+        }
+    })
         .then((contacts) => {
             if (contacts.length > 0) {
                 console.log(JSON.stringify(contacts, null, 2));
@@ -71,17 +71,17 @@ function buscarNombre(req, res, next){
         })
 }
 
-function buscarApellido(req, res, next){
+function buscarApellido(req, res, next) {
     const search = req.body.search;
     Contact.findAll({
-            where: {
-                lastname: search
-            },
-            include: {
-                all: true,
-                nested: true
-            }
-        })
+        where: {
+            lastname: search
+        },
+        include: {
+            all: true,
+            nested: true
+        }
+    })
         .then((contacts) => {
             if (contacts.length > 0) {
                 console.log(JSON.stringify(contacts, null, 2));
@@ -105,17 +105,17 @@ function buscarApellido(req, res, next){
         })
 }
 
-function validaMail(req, res, next){
+function validaMail(req, res, next) {
     const search = req.body.search;
     Contact.findAll({
-            where: {
-                email: search
-            },
-            include: {
-                all: true,
-                nested: true
-            }
-        })
+        where: {
+            email: search
+        },
+        include: {
+            all: true,
+            nested: true
+        }
+    })
         .then((contacts) => {
             if (contacts.length > 0) {
                 console.log(JSON.stringify(contacts, null, 2));
@@ -139,17 +139,17 @@ function validaMail(req, res, next){
         })
 }
 
-function checkTelefono(req, res, next){
+function checkTelefono(req, res, next) {
     const search = req.body.search;
     Contact.findAll({
-            where: {
-                phone: search
-            },
-            include: {
-                all: true,
-                nested: true
-            }
-        })
+        where: {
+            phone: search
+        },
+        include: {
+            all: true,
+            nested: true
+        }
+    })
         .then((contacts) => {
             if (contacts.length > 0) {
                 console.log(JSON.stringify(contacts, null, 2));
@@ -173,17 +173,17 @@ function checkTelefono(req, res, next){
         })
 }
 
-function existePuesto(req, res, next){
+function existePuesto(req, res, next) {
     const search = req.body.search;
     Contact.findAll({
-            where: {
-                position: search
-            },
-            include: {
-                all: true,
-                nested: true
-            }
-        })
+        where: {
+            position: search
+        },
+        include: {
+            all: true,
+            nested: true
+        }
+    })
         .then((contacts) => {
             if (contacts.length > 0) {
                 console.log(JSON.stringify(contacts, null, 2));
@@ -207,17 +207,17 @@ function existePuesto(req, res, next){
         })
 }
 
-function buscarInteres(req, res, next){
+function buscarInteres(req, res, next) {
     const search = req.body.search;
     Contact.findAll({
-            where: {
-                interest: search
-            },
-            include: {
-                all: true,
-                nested: true
-            }
-        })
+        where: {
+            interest: search
+        },
+        include: {
+            all: true,
+            nested: true
+        }
+    })
         .then((contacts) => {
             if (contacts.length > 0) {
                 console.log(JSON.stringify(contacts, null, 2));
@@ -241,25 +241,25 @@ function buscarInteres(req, res, next){
         })
 }
 
-function searchCompany(req, res, next){
+function searchCompany(req, res, next) {
     const search = req.body.search;
     Company.findAll({
-            where: {
-                name: search
-            }
-        })
+        where: {
+            name: search
+        }
+    })
         .then(company => {
             if (company.length > 0) {
                 const companyId = company[0].dataValues.id;
                 Contact.findAll({
-                        where: {
-                            companyId: companyId
-                        },
-                        include: {
-                            all: true,
-                            nested: true
-                        }
-                    })
+                    where: {
+                        companyId: companyId
+                    },
+                    include: {
+                        all: true,
+                        nested: true
+                    }
+                })
                     .then(contacts => {
                         console.log(JSON.stringify(contacts, null, 2));
                         res.status(200).render('home', {
@@ -291,26 +291,26 @@ function searchCompany(req, res, next){
         })
 }
 
-function busquedaRegión(req, res, next){
+function busquedaRegión(req, res, next) {
     const search = req.body.search;
     Region.findAll({
-            where: {
-                name: search
-            }
-        })
+        where: {
+            name: search
+        }
+    })
         .then(region => {
             if (region.length > 0) {
                 const regionId = region[0].dataValues.id;
                 console.log(regionId);
                 Contact.findAll({
-                        where: {
-                            regionId: regionId
-                        },
-                        include: {
-                            all: true,
-                            nested: true
-                        }
-                    })
+                    where: {
+                        regionId: regionId
+                    },
+                    include: {
+                        all: true,
+                        nested: true
+                    }
+                })
                     .then(contacts => {
                         console.log(JSON.stringify(contacts, null, 2));
                         res.status(200).render('home', {
@@ -342,25 +342,25 @@ function busquedaRegión(req, res, next){
         })
 }
 
-function checkCiudad(req, res, next){
+function checkCiudad(req, res, next) {
     const search = req.body.search;
     City.findAll({
-            where: {
-                name: search
-            }
-        })
+        where: {
+            name: search
+        }
+    })
         .then(city => {
             if (city.length > 0) {
                 const cityId = city[0].dataValues.id;
                 Contact.findAll({
-                        where: {
-                            cityId: cityId
-                        },
-                        include: {
-                            all: true,
-                            nested: true
-                        }
-                    })
+                    where: {
+                        cityId: cityId
+                    },
+                    include: {
+                        all: true,
+                        nested: true
+                    }
+                })
                     .then(contacts => {
                         console.log(JSON.stringify(contacts, null, 2));
                         res.status(200).render('home', {
@@ -397,25 +397,25 @@ function checkCiudad(req, res, next){
         })
 }
 
-function buscarPais(req, res, next){
+function buscarPais(req, res, next) {
     const search = req.body.search;
     Country.findAll({
-            where: {
-                name: search
-            }
-        })
+        where: {
+            name: search
+        }
+    })
         .then(country => {
             if (country.length > 0) {
                 const countryId = country[0].dataValues.id;
                 Contact.findAll({
-                        where: {
-                            countryId: countryId
-                        },
-                        include: {
-                            all: true,
-                            nested: true
-                        }
-                    })
+                    where: {
+                        countryId: countryId
+                    },
+                    include: {
+                        all: true,
+                        nested: true
+                    }
+                })
                     .then(contacts => {
                         console.log(JSON.stringify(contacts, null, 2));
                         res.status(200).render('home', {
@@ -461,7 +461,7 @@ const carga = multer({
     storage: almacena
 });
 
-module.exports = 
+module.exports =
 {
     buscarPais,
     carga,

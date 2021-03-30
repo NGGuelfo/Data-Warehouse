@@ -15,7 +15,7 @@ const ejsLint = require('ejs-lint');
 const cookieParser = require('cookie-parser');
 const { config } = require('./config/config');
 const router = express.Router();
-const { authController, upload, searcher } = require ('../middlewares');
+const { authController, upload, searcher } = require('../middlewares');
 const userController = require('../controller/users');
 const contactsController = require('../controller/contacts');
 const regionController = require('../controller/regions');
@@ -83,7 +83,7 @@ router.post('/search-contacto', authController.validaUsuario,
     searcher.busquedaRegión,
     searcher.busquedaCountry,
     searcher.busquedaCiudad
-    );
+);
 
 //Region
 router.post('/region', authController.validaUsuario, authController.validaAdmin, regionController.postNewRegion);

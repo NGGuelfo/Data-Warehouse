@@ -2,7 +2,7 @@
     "version": 3,
     "mappings": "AAAA,OAAO,CAAC,mFAAI;AAEZ,AAAA,WAAW,CAAC;EACR,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EACnB,cAAc,EAAE,MAAM;EACtB,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;CAIiC;;AAVjD,AAOI,WAPO,CAOP,EAAE,CAAC;EACC,WAAW,EAAE,uBAAuB;CAAG;;AAR/C,AASI,WATO,CASP,WAAW,CAAC;EACR,WAAW,EAAE,uBAAuB;CAAG",
     "sources": [
-        "../sass/login.sass"
+        "login.sass"
     ],
     "names": [],
     "file": "login.css"
