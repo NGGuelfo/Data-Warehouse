@@ -17,9 +17,9 @@ const { nuevoContacto, buscarContacto, buscarContactos, editarContacto, borrarCo
 const { nuevaRegion, buscarRegiones, buscarRegionesJSON, borrarRegion, editarRegion, nuevoPais, buscarPaises, editarPais, borrarPais, nuevaCiudad, buscarCiudades, editarCiudad, borrarCiudad } = require('./endpoints/regiones');
 const { buscarCompanias, buscarCompaniasJson, nuevaCompania, borrarCompania, editarCompania } = require('./endpoints/companias');
 
-const sequelize = new Sequelize(config.databaseName, config.username, config.password, {
+const sequelize = new Sequelize(config.databaseName, config.username, {
     host: config.host,
-    dialect: 'mysql'
+    dialect: config.dialect
 });
 
 Contactos.belongsTo(Usuarios, {
