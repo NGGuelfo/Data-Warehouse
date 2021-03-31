@@ -1,6 +1,6 @@
 //Importar dependencias instaladas
 const Sequelize = require('sequelize');
-
+const {Usuarios, Contactos, Companias, Ciudad, Paises, Regiones} = require ('./models');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -22,7 +22,7 @@ const sequelize = new Sequelize(config.databaseName, config.username, config.pas
     dialect: config.dialect
 });
 
-Contactos.belongsTo(User, {
+Contactos.belongsTo(Usuarios, {
     constraints: true,
     onDelete: 'CASCADE'
 });
