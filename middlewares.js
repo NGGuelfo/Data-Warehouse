@@ -1,4 +1,4 @@
-const { jwt, firma, Contactos, Ciudad, Regiones, Companias, Paises, Usuarios } = require('../models');
+const { jwt, firma, Contactos, Ciudad, Regiones, Companias, Paises, Usuarios } = require('./models');
 const multer = require('multer');
 
 function validaUsuario(req, res, next) {
