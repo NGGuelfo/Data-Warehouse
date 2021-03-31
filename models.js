@@ -97,7 +97,7 @@ const Regiones = sequelize.define('region', {
 
 module.exports = {
     Ciudad,
-    Usuario,
+    Usuarios,
     Companias,
     Contactos,
     Paises,
