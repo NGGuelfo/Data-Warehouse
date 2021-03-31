@@ -48,7 +48,7 @@ async function nuevoContacto(req, res){
 }
 
 async function buscarContactos(req, res){
-    Contact.findAll({
+    Contactos.findAll({
         include: {
             all: true,
             nested: true
@@ -75,7 +75,7 @@ async function buscarContactos(req, res){
 
 async function buscarContacto(req, res){
     const contactId = req.body.id;
-    Contact.findByPk(contactId)
+    Contactos.findByPk(contactId)
         .then(data => {
             res.status(200).json({
                 msg: 'Datos Contacto',
@@ -111,7 +111,7 @@ async function editarContacto(req, res){
     const newInterest = req.body.interest;
     const newRegion = req.body.regionId;
     const newCountry = req.body.countryId;
-    Contact.findByPk(contactId)
+    Contactos.findByPk(contactId)
         .then(contact => {
             contact.name = newName;
             contact.lastname = newLastname;
@@ -138,7 +138,7 @@ async function editarContacto(req, res){
 
 async function borrarContacto(req, res){
     const contactId = req.body.id;
-    Contact.findByPk(contactId)
+    Contactos.findByPk(contactId)
         .then(contact => {
             contact.destroy();
             res.status(200).json({
@@ -157,7 +157,7 @@ async function borrarContacto(req, res){
 async function borrarContactos(req, res){
     const id = req.body.ids;
     const ids = id.split(',');
-    Contact.destroy({
+    Contactos.destroy({
         where: {
             id: ids
         }
@@ -178,7 +178,7 @@ async function borrarContactos(req, res){
 
 async function contactoPorRegion(req, res){
     const regionId = req.body.search;
-    Contact.findAll({
+    Contactos.findAll({
         where: {
             regionId: regionId
         },
@@ -208,7 +208,7 @@ async function contactoPorRegion(req, res){
 
 async function contactoPorCompania(req, res){
     const companyId = req.body.search;
-    Contact.findAll({
+    Contactos.findAll({
         where: {
             companyId: companyId
         },
@@ -238,7 +238,7 @@ async function contactoPorCompania(req, res){
 
 async function contactoPorCiudad(req, res){
     const cityId = req.body.search;
-    Contact.findAll({
+    Contactos.findAll({
         where: {
             cityId: cityId
         },
@@ -268,7 +268,7 @@ async function contactoPorCiudad(req, res){
 
 async function contactoPorPais(req, res){
     const countryId = req.body.search;
-    Contact.findAll({
+    Contactos.findAll({
         where: {
             countryId: countryId
         },
@@ -308,7 +308,7 @@ async function ordenarContacto(req, res){
     const direction = req.body.direction;
     console.log(column);
     console.log(direction);
-    Contact.findAll({
+    Contactos.findAll({
         order: [
             [column, direction]
         ],

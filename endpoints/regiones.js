@@ -4,7 +4,7 @@ const { Regiones, Paises, Ciudad } = require('../models');
 
 async function nuevaRegion(req, res){
     const regionName = req.body.regionName;
-    Region.create({
+    Regiones.create({
         name: regionName
     })
         .then(data => {
@@ -24,7 +24,7 @@ async function nuevaRegion(req, res){
 }
 
 async function buscarRegionesJSON(req, res){
-    Region.findAll()
+    Regiones.findAll()
         .then(data => {
             res.status(200).json({
                 msg: 'Regiones',
@@ -42,7 +42,7 @@ async function buscarRegionesJSON(req, res){
 }
 
 async function buscarRegiones(req, res){
-    Region.findAll({
+    Regiones.findAll({
         include: {
             all: true,
             nested: true
@@ -67,7 +67,7 @@ async function buscarRegiones(req, res){
 
 async function borrarRegion(req, res){
     const id = req.body.id;
-    Region.findByPk(id)
+    Regiones.findByPk(id)
         .then(region => {
             region.destroy();
             res.status(200).json({
@@ -88,7 +88,7 @@ async function borrarRegion(req, res){
 async function editarRegion(req, res){
     const id = req.body.id;
     const regionName = req.body.name;
-    Region.findByPk(id)
+    Regiones.findByPk(id)
         .then(region => {
             region.name = regionName;
             region.save();
@@ -112,7 +112,7 @@ async function editarRegion(req, res){
 async function nuevoPais(req, res){
     const regionId = parseInt(req.body.regionId);
     const countryName = req.body.countryName;
-    Country.create({
+    Paises.create({
         name: countryName,
         regionId: regionId
     })
@@ -134,7 +134,7 @@ async function nuevoPais(req, res){
 
 async function borrarPais(req, res){
     const id = req.body.id;
-    Country.findByPk(id)
+    Paises.findByPk(id)
         .then(country => {
             country.destroy();
             res.status(200).json({
@@ -155,7 +155,7 @@ async function borrarPais(req, res){
 async function editarPais(req, res){
     const id = req.body.id;
     const countryName = req.body.name;
-    Country.findByPk(id)
+    Paises.findByPk(id)
         .then(country => {
             country.name = countryName;
             country.save();
@@ -176,7 +176,7 @@ async function editarPais(req, res){
 
 async function buscarPaises(req, res){
     const regionId = req.body.regionId;
-    Country.findAll({
+    Paises.findAll({
         where: {
             regionId: regionId
         }
@@ -202,7 +202,7 @@ async function buscarPaises(req, res){
 async function nuevaCiudad(req, res){
     const countryId = parseInt(req.body.countryId);
     const cityName = req.body.cityName;
-    City.create({
+    Ciudad.create({
         name: cityName,
         countryId: countryId
     })
@@ -224,7 +224,7 @@ async function nuevaCiudad(req, res){
 
 async function borrarCiudad(req, res){
     const id = req.body.id;
-    City.findByPk(id)
+    Ciudad.findByPk(id)
         .then(city => {
             city.destroy();
             res.status(200).json({
@@ -245,7 +245,7 @@ async function borrarCiudad(req, res){
 async function editarCiudad(req, res){
     const id = req.body.id;
     const cityName = req.body.name;
-    City.findByPk(id)
+    Ciudad.findByPk(id)
         .then(city => {
             city.name = cityName;
             city.save();
@@ -266,7 +266,7 @@ async function editarCiudad(req, res){
 
 async function buscarCiudades(req, res){
     const countryId = req.body.countryId;
-    City.findAll({
+    Ciudad.findAll({
         where: {
             countryId: countryId
         }

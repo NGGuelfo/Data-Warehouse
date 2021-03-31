@@ -15,7 +15,7 @@ async function crearUsuario(req, res){
     const newEmail = req.body.email;
     const newAdmin = req.body.perfil;
     const newPassword = req.body.password;
-    User.findOne({
+    Usuarios.findOne({
         where: {
             email: newEmail
         }
@@ -31,7 +31,7 @@ async function crearUsuario(req, res){
                 return bcrypt
                     .hash(newPassword, 12)
                     .then(hashedPassword => {
-                        const user = new User({
+                        const user = new Usuarios({
                             name: newName,
                             lastname: newLastName,
                             email: newEmail,
@@ -62,7 +62,7 @@ async function loginUsuario(req, res){
     const email = req.body.email;
     const password = req.body.password;
     var usuarioLog;
-    User.findOne({
+    Usuarios.findOne({
         where: {
             email: email
         }
@@ -97,7 +97,7 @@ async function loginUsuario(req, res){
 }
 
 async function verUsuarios(req, res){
-    User.findAll()
+    Usuarios.findAll()
         .then(data => {
             console.log(JSON.stringify(data, null, 2));
             res.status(200).render('home', {
@@ -119,7 +119,7 @@ async function editarUsuarios(req, res){
     const newAdmin = req.body.perfil;
     const newPassword = req.body.password;
     const saltRounds = 12;
-    User.findByPk(id)
+    Usuarios.findByPk(id)
         .then(user => {
             console.log(user);
             user.name = newName;
@@ -148,7 +148,7 @@ async function editarUsuarios(req, res){
 
 async function borrarUsuarios(req, res){
     const id = req.body.id;
-    User.findByPk(id)
+    Usuarios.findByPk(id)
         .then(user => {
             console.log(user);
             user.destroy();
