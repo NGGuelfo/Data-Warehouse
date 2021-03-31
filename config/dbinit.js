@@ -4,7 +4,7 @@ const { Ciudad, Usuarios, Contactos, Companias, Regiones, Paises } = require('..
 const bcrypt = require('bcryptjs');
 const password = bcrypt.hashSync('admin1234', 12);
 
-const sequelize = new Sequelize(config.databaseName, config.username, {
+const sequelize = new Sequelize(config.databaseName, config.username, config.password, {
     host: config.host,
     dialect: 'mysql'
 });

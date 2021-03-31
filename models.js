@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 const config = require('./config/config');
 const firma = config.secret_key;
 
-const sequelize = new Sequelize (config.databaseName, config.username, config.password, {
-    host: 'localhost',
+const sequelize = new Sequelize(config.databaseName, config.username, config.password, {
+    host: config.host,
     dialect: 'mysql'
 });
 
