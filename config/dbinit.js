@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { config } = require('./config/config');
+const { config } = require('./config');
 const { Ciudad, Usuarios, Contactos, Companias, Regiones, Paises } = require('../models');
 const bcrypt = require('bcryptjs');
 const password = bcrypt.hashSync('admin1234', 12);
