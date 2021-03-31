@@ -11,7 +11,7 @@ const ejsLint = require('ejs-lint');
 const cookieParser = require('cookie-parser');
 const  config = require('./config/config');
 const router = express.Router();
-const { buscarPais, checkCiudad, busquedaRegión, searchCompany, buscarInteres, existePuesto, checkTelefono, validaMail, buscarApellido, buscarNombre, validaAdmin, validaUsuario } = require('./middlewares');
+const { middlewares, buscarPais, checkCiudad, busquedaRegión, searchCompany, buscarInteres, existePuesto, checkTelefono, validaMail, buscarApellido, buscarNombre, validaAdmin, validaUsuario } = require('./middlewares');
 const { crearUsuario, loginUsuario, verUsuarios, editarUsuarios, borrarUsuarios } = require('./endpoints/usuarios');
 const { nuevoContacto, buscarContacto, buscarContactos, editarContacto, borrarContacto, borrarContactos, contactoPorRegion, contactoPorPais, contactoPorCiudad, contactoPorCompania, formularioContacto, ordenarContacto } = require('./endpoints/contactos');
 const { nuevaRegion, buscarRegiones, buscarRegionesJSON, borrarRegion, editarRegion, nuevoPais, buscarPaises, editarPais, borrarPais, nuevaCiudad, buscarCiudades, editarCiudad, borrarCiudad } = require('./endpoints/regiones');
@@ -19,7 +19,7 @@ const { buscarCompanias, buscarCompaniasJson, nuevaCompania, borrarCompania, edi
 
 const sequelize = new Sequelize(config.databaseName, config.username, config.password, {
     host: config.host,
-    dialect: config.dialect
+    dialect: 'mysql'
 });
 
 Contactos.belongsTo(Usuarios, {
@@ -68,8 +68,8 @@ router.get('/contactos', validaUsuario, buscarContacto);
 router.post('/contactos', validaUsuario, editarContacto);
 router.delete('/contactos', validaUsuario, borrarContacto);
 router.get('/contactos', validaUsuario, contactoPorRegion);
-router.post('/editar-contacto', validaUsuario, single('img'), editarContacto);
-router.post('/uploads', validaUsuario, single('img'), nuevoContacto);
+//router.post('/editar-contacto', validaUsuario, middlewares.single('img'), editarContacto);
+//router.post('/uploads', validaUsuario, middlewares.single('img'), nuevoContacto);
 router.get('/form-contact', validaUsuario, formularioContacto);
 router.delete('/delete-contactos', validaUsuario, borrarContactos);
 router.post('/orden-contact', validaUsuario, ordenarContacto);

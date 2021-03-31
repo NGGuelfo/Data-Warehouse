@@ -1,7 +1,7 @@
 {
   "name": "data_warehouse",
   "version": "1.0.0",
-  "description": "Aplicación para gestionar contactos de una compania.",
+  "description": "Aplicación para gestionar contactos de una empresa de marketing.",
   "main": "app.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -27,12 +27,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gastond23/data_warehouse.git"
+    "url": "git+https://github.com/NGGuelfo/Data-Warehouse.git"
   },
-  "author": "Gaston Dandre",
-  "license": "MIT",
+  "author": "Guelfo Nicolas",
+  "license": "",
   "bugs": {
-    "url": "https://github.com/gastond23/data_warehouse/issues"
   },
-  "homepage": "https://github.com/gastond23/data_warehouse#readme"
+  "homepage": "https://github.com/NGGuelfo/Data-Warehouse#readme"
 }

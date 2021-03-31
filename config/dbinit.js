@@ -1,12 +1,12 @@
 const Sequelize = require('sequelize');
-const { config } = require('./config');
+const config = require('./config');
 const { Ciudad, Usuarios, Contactos, Companias, Regiones, Paises } = require('../models');
 const bcrypt = require('bcryptjs');
 const password = bcrypt.hashSync('admin1234', 12);
 
-const sequelize = new Sequelize(config.databaseName, config.username, config.password, {
+const sequelize = new Sequelize(config.databaseName, config.username, {
     host: config.host,
-    dialect: config.dialect
+    dialect: 'mysql'
 });
 
 Contactos.belongsTo(Usuarios, {

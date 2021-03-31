@@ -1,12 +1,12 @@
 const Sequelize = require('sequelize');
 
 const jwt = require('jsonwebtoken');
-const config = require('../config/config');
+const config = require('./config/config');
 const firma = config.secret_key;
 
 const sequelize = new Sequelize (config.databaseName, config.username, config.password, {
     host: config.host,
-    dialect: config.dialect
+    dialect: 'mysql'
 });
 
 const Ciudad = sequelize.define('city', {
